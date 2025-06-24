@@ -1,0 +1,84 @@
+.particle-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 20s infinite linear;
+}
+
+.dark .particle {
+  background: var(--primary-color);
+  box-shadow: 0 0 6px var(--primary-color);
+}
+
+.particle:nth-child(2n) {
+  width: 2px;
+  height: 2px;
+  background: var(--accent-color);
+}
+
+.particle:nth-child(3n) {
+  width: 6px;
+  height: 6px;
+  background: rgba(59, 130, 246, 0.4);
+}
+
+.particle:nth-child(4n) {
+  width: 3px;
+  height: 3px;
+  background: rgba(139, 92, 246, 0.6);
+}
+
+.particle:nth-child(5n) {
+  width: 5px;
+  height: 5px;
+  background: rgba(245, 158, 11, 0.5);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .particle {
+    width: 3px;
+    height: 3px;
+  }
+  
+  .particle:nth-child(2n) {
+    width: 2px;
+    height: 2px;
+  }
+  
+  .particle:nth-child(3n) {
+    width: 4px;
+    height: 4px;
+  }
+}

@@ -1,0 +1,391 @@
+.about {
+  padding: 6rem 0;
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+.dark .about {
+  background: var(--bg-primary);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  animation: fadeInUp 1s ease-out;
+}
+
+.dark .about-text h3 {
+  color: var(--text-primary);
+}
+
+.about-text p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.dark .about-text p {
+  color: var(--text-secondary);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .stat {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+.stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.stat:hover::before {
+  left: 100%;
+}
+
+.stat:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.stat h4 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  animation: countUp 2s ease-out;
+}
+
+.dark .stat h4 {
+  color: var(--primary-color);
+}
+
+.stat p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0;
+}
+
+.dark .stat p {
+  color: var(--text-secondary);
+}
+
+@keyframes countUp {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .feature-card {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+  left: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-color);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--gradient-primary);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.feature-card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.dark .feature-card h4 {
+  color: var(--text-primary);
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.dark .feature-card p {
+  color: var(--text-secondary);
+}
+
+/* Large Desktop */
+@media (max-width: 1440px) {
+  .about-content {
+    gap: 3.5rem;
+  }
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .about {
+    padding: 5rem 0;
+  }
+
+  .about-content {
+    gap: 3rem;
+  }
+
+  .about-text h3 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 1.75rem;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .about {
+    padding: 4rem 0;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-text h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .stat {
+    padding: 1.25rem;
+  }
+
+  .stat h4 {
+    font-size: 1.8rem;
+  }
+
+  .stat p {
+    font-size: 0.9rem;
+  }
+
+  .features-grid {
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1.25rem;
+  }
+
+  .feature-card h4 {
+    font-size: 1.125rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .about {
+    padding: 3rem 0;
+  }
+
+  .about-content {
+    gap: 2rem;
+  }
+
+  .about-text h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-text p {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stat {
+    padding: 1rem;
+  }
+
+  .stat h4 {
+    font-size: 1.5rem;
+  }
+
+  .stat p {
+    font-size: 0.8rem;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  .feature-card h4 {
+    font-size: 1rem;
+  }
+
+  .feature-card p {
+    font-size: 0.8rem;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .about {
+    padding: 2.5rem 0;
+  }
+
+  .about-text h3 {
+    font-size: 1.125rem;
+  }
+
+  .about-text p {
+    font-size: 0.8rem;
+  }
+
+  .stat h4 {
+    font-size: 1.375rem;
+  }
+
+  .feature-card {
+    padding: 1rem;
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+  }
+}

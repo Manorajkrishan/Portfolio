@@ -1,0 +1,54 @@
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+}
+
+.dark .custom-cursor {
+  background: var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.dark .cursor-follower {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Hide default cursor on interactive elements */
+a, button, .skill-icon-item, .project-card, .feature-card {
+  cursor: none;
+}
+
+/* Mobile - hide custom cursor */
+@media (max-width: 768px) {
+  .custom-cursor,
+  .cursor-follower {
+    display: none;
+  }
+  
+  a, button, .skill-icon-item, .project-card, .feature-card {
+    cursor: pointer;
+  }
+}

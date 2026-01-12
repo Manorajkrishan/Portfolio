@@ -23,6 +23,7 @@ export const portfolio = {
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
+    { id: 'certifications', label: 'Certifications' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ],
@@ -274,6 +275,7 @@ export const portfolio = {
     subtitle: 'Some of my recent work',
     categories: [
       { key: 'all', label: 'All Projects' },
+      { key: 'research', label: 'Research' },
       { key: 'fullstack', label: 'Full Stack' },
       { key: 'ai', label: 'AI/ML' },
       { key: 'mobile', label: 'Mobile' },
@@ -296,21 +298,21 @@ export const portfolio = {
           'MongoDB',
           'WebSocket',
         ],
-        category: 'ai',
+        category: 'research',
         liveUrl: null,
-        githubUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/NeuroSync',
       },
       {
         id: 2,
-        title: 'Autonomous Drone Navigation System',
+        title: 'UAV Firmware Forensics',
         description:
-          'Autonomous drone system with real-time object detection (~92% accuracy) and path planning; includes a web ground-control station for monitoring.',
+          'Drone-focused firmware forensics project exploring analysis workflows and investigation techniques for UAV firmware artifacts.',
         image:
           'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=400&h=250&fit=crop',
-        technologies: ['Python', 'OpenCV', 'TensorFlow', 'React', 'Node.js', 'Express', 'MongoDB'],
-        category: 'ai',
+        technologies: ['Firmware', 'Forensics', 'Security Research'],
+        category: 'research',
         liveUrl: null,
-        githubUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/UAV-Firmware-Forensics',
       },
       {
         id: 3,
@@ -350,6 +352,31 @@ export const portfolio = {
       },
       {
         id: 6,
+        title: 'Parcel Service System',
+        description:
+          'Java-based parcel management system with package tracking and delivery management features.',
+        image:
+          'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=250&fit=crop',
+        technologies: ['Java', 'Swing', 'JDBC', 'MySQL'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/ParcelService',
+      },
+      {
+        id: 7,
+        title: 'Vehicle Service Management System',
+        description:
+          'OOP project for managing vehicle services and fuel station operations with CRUD functionality.',
+        image:
+          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop',
+        technologies: ['Java', 'OOP', 'CRUD'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl:
+          'https://github.com/Manorajkrishan/Online-vehicle-service-and-Fuel-station-management-system',
+      },
+      {
+        id: 8,
         title: 'TODO App (Kotlin)',
         description:
           'Modern Android TODO app with clean UI, task management, and local storage.',
@@ -359,6 +386,47 @@ export const portfolio = {
         category: 'mobile',
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/TODO',
+      },
+    ],
+  },
+
+  certifications: {
+    subtitle: 'Courses and credentials I’ve completed recently',
+    items: [
+      {
+        title: 'AI/ML Engineer — Stage 2 & Stage 1',
+        issuer: 'SLIIT Centre for Open and Distance Education',
+        date: '06/2025',
+        url: null,
+        tags: ['AI/ML'],
+      },
+      {
+        title: 'Java Programming Fundamentals',
+        issuer: 'Udemy',
+        date: '06/2025',
+        url: null,
+        tags: ['Java'],
+      },
+      {
+        title: 'Python and Flask Framework Complete Course',
+        issuer: 'Udemy',
+        date: '06/2025',
+        url: null,
+        tags: ['Python', 'Flask'],
+      },
+      {
+        title: 'Python for Beginners',
+        issuer: 'University of Moratuwa — OpenUOM',
+        date: '06/2025',
+        url: null,
+        tags: ['Python'],
+      },
+      {
+        title: 'Introduction to AI',
+        issuer: 'University of Helsinki',
+        date: '05/2021',
+        url: null,
+        tags: ['AI'],
       },
     ],
   },

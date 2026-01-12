@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Copy, Check } from 'lucide-react'
+import { portfolio } from '../data/portfolio'
 import './Contact.css'
 
 const Contact = () => {
@@ -10,48 +11,72 @@ const Contact = () => {
     subject: '',
     message: ''
   })
+  const [status, setStatus] = useState({ type: 'idle', message: '' })
 
   const handleChange = (e) => {
+    if (status.type !== 'idle') setStatus({ type: 'idle', message: '' })
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    // Reset form
+    const subject = formData.subject?.trim() || `Portfolio enquiry from ${formData.name || 'someone'}`
+    const body = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      '',
+      formData.message,
+    ].join('\n')
+
+    const mailto = `mailto:${encodeURIComponent(portfolio.person.email)}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`
+
+    setStatus({ type: 'success', message: 'Opening your email app…' })
+    window.location.href = mailto
+
     setFormData({
       name: '',
       email: '',
       subject: '',
       message: ''
     })
-    alert('Thank you for your message! I\'ll get back to you soon.')
   }
 
   const contactInfo = [
     {
       icon: <Mail size={24} />,
       title: "Email",
-      value: "krishan142536@gmail.com",
-      link: "mailto:krishan142536@gmail.com"
+      value: portfolio.person.email,
+      link: `mailto:${portfolio.person.email}`
     },
     {
       icon: <Phone size={24} />,
       title: "Phone",
-      value: "+44 7456 907934",
-      link: "tel:+447456907934"
+      value: portfolio.person.phoneDisplay,
+      link: `tel:${portfolio.person.phoneE164}`
     },
     {
       icon: <MapPin size={24} />,
       title: "Location",
-      value: "Hatfield, United Kingdom",
+      value: portfolio.person.location,
       link: null
     }
   ]
+
+  const copyToClipboard = async (text, label) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setStatus({ type: 'copied', message: `${label} copied` })
+      window.setTimeout(() => setStatus({ type: 'idle', message: '' }), 1500)
+    } catch {
+      setStatus({ type: 'error', message: 'Copy failed — please copy manually.' })
+      window.setTimeout(() => setStatus({ type: 'idle', message: '' }), 2000)
+    }
+  }
 
   return (
     <section id="contact" className="contact">
@@ -64,7 +89,7 @@ const Contact = () => {
           viewport={{ once: true }}
         >
           <h2>Get In Touch</h2>
-          <p>Let's work together on your next project</p>
+          <p>{portfolio.contact.subtitle}</p>
         </motion.div>
 
         <div className="contact-content">
@@ -75,9 +100,9 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h3>Let's talk about your project</h3>
+            <h3>Let&apos;s talk about your project</h3>
             <p>
-              I'm always interested in new opportunities and exciting projects. 
+              I&apos;m always interested in new opportunities and exciting projects. 
               Whether you have a question or just want to say hi, feel free to reach out!
             </p>
 
@@ -104,6 +129,23 @@ const Contact = () => {
                   </div>
                 </motion.div>
               ))}
+            </div>
+
+            <div className="contact-quick-actions">
+              <button
+                type="button"
+                className="contact-quick-btn"
+                onClick={() => copyToClipboard(portfolio.person.email, 'Email')}
+              >
+                <Copy size={16} /> Copy email
+              </button>
+              <button
+                type="button"
+                className="contact-quick-btn"
+                onClick={() => copyToClipboard(portfolio.person.phoneDisplay, 'Phone')}
+              >
+                <Copy size={16} /> Copy phone
+              </button>
             </div>
           </motion.div>
 
@@ -169,6 +211,19 @@ const Contact = () => {
                 <Send size={20} />
                 Send Message
               </motion.button>
+
+              {status.type !== 'idle' && (
+                <div
+                  className={`contact-status ${
+                    status.type === 'error' ? 'contact-status-error' : 'contact-status-success'
+                  }`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  {status.type === 'copied' ? <Check size={16} /> : null}
+                  <span>{status.message}</span>
+                </div>
+              )}
             </form>
           </motion.div>
         </div>

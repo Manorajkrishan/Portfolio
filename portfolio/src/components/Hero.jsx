@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
 import ParticleBackground from './ParticleBackground'
+import { portfolio } from '../data/portfolio'
 import './Hero.css'
 
 const Hero = () => {
@@ -81,8 +82,8 @@ const Hero = () => {
     return () => ctx.revert()
   }, [])
 
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToSection = (sectionId) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -92,44 +93,65 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title" ref={titleRef}>
-              Hi, I'm <span className="highlight">Manoraj Krishan</span>
+              {portfolio.hero.headlinePrefix}{' '}
+              <span className="highlight">{portfolio.person.name}</span>
             </h1>
 
             <p className="hero-subtitle" ref={subtitleRef}>
-              Full Stack Developer & AI/ML Enthusiast
+              {portfolio.person.title} & AI/ML Enthusiast
             </p>
 
             <p className="hero-description" ref={descriptionRef}>
-              A passionate and versatile Full Stack Developer with strong academic grounding in Computer Science
-              and hands-on industry experience. I specialize in MERN Stack, Spring Boot, and Java/Python development,
-              with a growing focus on AI/ML applications.
+              {portfolio.hero.description}
             </p>
 
             <div className="hero-buttons" ref={buttonsRef}>
-              <button className="btn btn-primary" onClick={scrollToAbout}>
-                View My Work
-              </button>
-              <a
-                href="/Manoraj_Krishan_CV.pdf"
-                className="btn btn-secondary"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                className="btn btn-primary"
+                onClick={() => scrollToSection(portfolio.hero.primaryCta.targetId)}
               >
-                Download CV
-              </a>
+                {portfolio.hero.primaryCta.label}
+              </button>
+              {portfolio.hero.resumeUrl ? (
+                <a
+                  href={portfolio.hero.resumeUrl}
+                  className="btn btn-secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download CV
+                </a>
+              ) : (
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => scrollToSection(portfolio.hero.secondaryCta.targetId)}
+                >
+                  {portfolio.hero.secondaryCta.label}
+                </button>
+              )}
             </div>
 
             <div className="social-links" ref={socialRef}>
-              <a href="https://github.com/Manorajkrishan" target="_blank" rel="noopener noreferrer">
+              <a
+                href={portfolio.person.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
                 <Github size={24} />
               </a>
-              <a href="https://linkedin.com/in/manorajkrishan" target="_blank" rel="noopener noreferrer">
+              <a
+                href={portfolio.person.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
                 <Linkedin size={24} />
               </a>
-              <a href="mailto:krishan142536@gmail.com">
+              <a href={`mailto:${portfolio.person.email}`} aria-label="Email">
                 <Mail size={24} />
               </a>
-              <a href="tel:+447456907934">
+              <a href={`tel:${portfolio.person.phoneE164}`} aria-label="Phone">
                 <Phone size={24} />
               </a>
             </div>
@@ -138,17 +160,17 @@ const Hero = () => {
           <div className="hero-image" ref={imageRef}>
             <div className="image-placeholder">
               <img
-                src="/WhatsApp Image 2025-06-22 at 19.05.29_708ba2a7.jpg"
-                alt="Manoraj Krishan"
+                src={portfolio.person.image.src}
+                alt={portfolio.person.image.alt}
                 onError={(e) => {
-                  e.target.src = "https://via.placeholder.com/400x400/3b82f6/ffffff?text=MK"
+                  e.target.src = portfolio.person.image.fallback
                 }}
               />
             </div>
           </div>
         </div>
 
-        <div className="scroll-indicator" onClick={scrollToAbout}>
+        <div className="scroll-indicator" onClick={() => scrollToSection('about')}>
           <ArrowDown size={24} />
         </div>
       </div>

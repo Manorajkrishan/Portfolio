@@ -7,13 +7,20 @@ import './Header.css'
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
   const { isDarkMode, toggleDarkMode } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      const doc = document.documentElement
+      const scrollTop = doc.scrollTop || document.body.scrollTop
+      const scrollHeight = doc.scrollHeight - doc.clientHeight
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0
+      setScrollProgress(progress)
     }
     window.addEventListener('scroll', handleScroll)
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -27,6 +34,9 @@ const Header = () => {
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="scroll-progress" aria-hidden="true">
+        <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
+      </div>
       <div className="container">
         <div className="logo">
           <h2>{portfolio.person.name}</h2>

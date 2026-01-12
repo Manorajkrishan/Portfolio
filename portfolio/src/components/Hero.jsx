@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
+import { ArrowDown, Github, Linkedin, Mail, Phone, Sparkles } from 'lucide-react'
 import ParticleBackground from './ParticleBackground'
 import { portfolio } from '../data/portfolio'
 import './Hero.css'
@@ -92,18 +92,33 @@ const Hero = () => {
       <div className="container">
         <div className="hero-content">
           <div className="hero-text">
+            <div className="hero-topline" aria-label="Highlights">
+              <span className="hero-pill">
+                <Sparkles size={16} /> Available for opportunities
+              </span>
+              <span className="hero-pill hero-pill-muted">{portfolio.person.location}</span>
+            </div>
+
             <h1 className="hero-title" ref={titleRef}>
               {portfolio.hero.headlinePrefix}{' '}
               <span className="highlight">{portfolio.person.name}</span>
             </h1>
 
             <p className="hero-subtitle" ref={subtitleRef}>
-              {portfolio.person.title} & AI/ML Enthusiast
+              {portfolio.person.tagline}
             </p>
 
             <p className="hero-description" ref={descriptionRef}>
               {portfolio.hero.description}
             </p>
+
+            <div className="hero-badges">
+              {portfolio.hero.badges.map((badge) => (
+                <span className="hero-badge" key={badge}>
+                  {badge}
+                </span>
+              ))}
+            </div>
 
             <div className="hero-buttons" ref={buttonsRef}>
               <button
@@ -158,7 +173,7 @@ const Hero = () => {
           </div>
 
           <div className="hero-image" ref={imageRef}>
-            <div className="image-placeholder">
+            <div className="image-placeholder shine">
               <img
                 src={portfolio.person.image.src}
                 alt={portfolio.person.image.alt}

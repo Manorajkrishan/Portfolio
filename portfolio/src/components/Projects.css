@@ -18,19 +18,24 @@
 
 .filter-btn {
   padding: 0.75rem 1.5rem;
-  border: 2px solid var(--border-color);
-  background: white;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(255, 255, 255, 0.65);
   color: var(--text-secondary);
   border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
 }
 
 .filter-btn:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .filter-btn.active {
@@ -47,18 +52,21 @@
 }
 
 .project-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.72);
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  box-shadow: 0 24px 65px -55px rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: perspective(1200px) translateZ(0);
 }
 
 .dark .project-card {
-  background: var(--bg-secondary);
-  border-color: var(--border-color);
+  background: rgba(15, 23, 42, 0.45);
+  border-color: rgba(51, 65, 85, 0.55);
 }
 
 .project-card::before {
@@ -79,8 +87,8 @@
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--primary-color);
+  box-shadow: 0 45px 110px -70px rgba(2, 6, 23, 0.85);
+  border-color: rgba(59, 130, 246, 0.45);
 }
 
 .project-image {
@@ -94,6 +102,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  filter: saturate(1.05) contrast(1.02);
 }
 
 .project-card:hover .project-image img {
@@ -106,7 +115,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(59, 130, 246, 0.9);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.92), rgba(139, 92, 246, 0.82));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,6 +143,7 @@
   border-radius: 50%;
   text-decoration: none;
   transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
 }
 
 .project-links a:hover {
@@ -180,12 +190,19 @@
 
 .tech-tag {
   padding: 0.375rem 0.75rem;
-  background: var(--bg-secondary);
+  background: rgba(255, 255, 255, 0.55);
   color: var(--text-secondary);
   border-radius: 1rem;
   font-size: 0.75rem;
   font-weight: 500;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dark .tech-tag {
+  background: rgba(2, 6, 23, 0.22);
+  border-color: rgba(51, 65, 85, 0.55);
 }
 
 /* Large Desktop */

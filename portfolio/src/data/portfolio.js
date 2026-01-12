@@ -33,6 +33,14 @@ export const portfolio = {
       'Detail-oriented Full Stack Developer with hands-on experience building responsive MERN applications. Skilled in React, Node, MongoDB, Python, and AI/ML — focused on scalable systems and real-world impact.',
     primaryCta: { label: 'View Projects', targetId: 'projects' },
     secondaryCta: { label: 'Contact Me', targetId: 'contact' },
+    badges: [
+      'MERN',
+      'AI/ML',
+      'React',
+      'Node.js',
+      'Python',
+      'TensorFlow',
+    ],
     // If you add a PDF to `public/`, set resumeUrl to "/Your_Resume.pdf"
     resumeUrl: null,
   },

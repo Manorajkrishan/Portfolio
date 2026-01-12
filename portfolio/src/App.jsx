@@ -15,6 +15,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="App">
+        <div className="noise" aria-hidden="true" />
         <CustomCursor />
         <Header />
         <main>

@@ -46,7 +46,9 @@ const CustomCursor = () => {
     document.addEventListener('mousemove', moveCursor)
     
     // Add hover effects to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .skill-icon-item, .project-card, .feature-card')
+    const interactiveElements = document.querySelectorAll(
+      'a, button, .skill-icon-item, .project-card, .feature-card, .experience-card, .contact-quick-btn',
+    )
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleMouseEnter)
       el.addEventListener('mouseleave', handleMouseLeave)

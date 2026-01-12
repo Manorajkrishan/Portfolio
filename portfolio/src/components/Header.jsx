@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, X, Moon, Sun } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
+import { portfolio } from '../data/portfolio'
 import './Header.css'
 
 const Header = () => {
@@ -28,16 +29,16 @@ const Header = () => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="logo">
-          <h2>Manoraj Krishan</h2>
+          <h2>{portfolio.person.name}</h2>
         </div>
         
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
           <ul>
-            <li><button onClick={() => scrollToSection('hero')}>Home</button></li>
-            <li><button onClick={() => scrollToSection('about')}>About</button></li>
-            <li><button onClick={() => scrollToSection('skills')}>Skills</button></li>
-            <li><button onClick={() => scrollToSection('projects')}>Projects</button></li>
-            <li><button onClick={() => scrollToSection('contact')}>Contact</button></li>
+            {portfolio.nav.map((item) => (
+              <li key={item.id}>
+                <button onClick={() => scrollToSection(item.id)}>{item.label}</button>
+              </li>
+            ))}
           </ul>
         </nav>
 

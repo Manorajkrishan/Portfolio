@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { portfolio } from '../data/portfolio'
 import './Skills.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -9,113 +10,13 @@ const Skills = () => {
   const skillsRef = useRef(null)
   const skillItemsRef = useRef([])
 
-  const skillCategories = [
-    {
-      title: "Frontend Technologies",
-      skills: [
-        {
-          name: "React",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-          color: "#61DAFB"
-        },
-        {
-          name: "JavaScript",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-          color: "#F7DF1E"
-        },
-        {
-          name: "TypeScript",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-          color: "#3178C6"
-        },
-        {
-          name: "HTML5",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-          color: "#E34F26"
-        },
-        {
-          name: "CSS3",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-          color: "#1572B6"
-        },
-        {
-          name: "Tailwind CSS",
-          icon: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg",
-          color: "#06B6D4"
-        }
-      ]
-    },
-    {
-      title: "Backend & Database",
-      skills: [
-        {
-          name: "Node.js",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-          color: "#339933"
-        },
-        {
-          name: "Python",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-          color: "#3776AB"
-        },
-        {
-          name: "Java",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-          color: "#ED8B00"
-        },
-        {
-          name: "Spring Boot",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-          color: "#6DB33F"
-        },
-        {
-          name: "MongoDB",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-          color: "#47A248"
-        },
-        {
-          name: "MySQL",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-          color: "#4479A1"
-        }
-      ]
-    },
-    {
-      title: "Tools & Technologies",
-      skills: [
-        {
-          name: "Git",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-          color: "#F05032"
-        },
-        {
-          name: "Docker",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-          color: "#2496ED"
-        },
-        {
-          name: "AWS",
-          icon: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
-          color: "#FF9900"
-        },
-        {
-          name: "Flask",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
-          color: "#000000"
-        },
-        {
-          name: "Kotlin",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-          color: "#7F52FF"
-        },
-        {
-          name: "Linux",
-          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
-          color: "#FCC624"
-        }
-      ]
-    }
-  ]
+  const skillCategories = portfolio.skills.categories
+
+  const categoryStartIndex = skillCategories.reduce((acc, category, idx) => {
+    const prev = idx === 0 ? 0 : acc[idx - 1] + skillCategories[idx - 1].skills.length
+    acc[idx] = prev
+    return acc
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -143,7 +44,7 @@ const Skills = () => {
       <div className="container">
         <div className="section-header">
           <h2>Skills & Expertise</h2>
-          <p>Technologies I work with</p>
+          <p>{portfolio.skills.subtitle}</p>
         </div>
 
         <div className="skills-grid">
@@ -155,7 +56,10 @@ const Skills = () => {
                   <div
                     key={skillIndex}
                     className="skill-icon-item"
-                    ref={el => skillItemsRef.current[categoryIndex * 6 + skillIndex] = el}
+                    ref={(el) => {
+                      const idx = categoryStartIndex[categoryIndex] + skillIndex
+                      skillItemsRef.current[idx] = el
+                    }}
                   >
                     <div className="skill-icon-wrapper">
                       <img
@@ -195,12 +99,8 @@ const Skills = () => {
         </div>
 
         <div className="skills-summary">
-          <h3>Always Learning</h3>
-          <p>
-            I'm constantly expanding my skill set and staying up-to-date with the latest
-            technologies and best practices in software development. Currently exploring
-            AI/ML applications, cloud architecture, and advanced full-stack solutions.
-          </p>
+          <h3>{portfolio.skills.summaryHeading}</h3>
+          <p>{portfolio.skills.summary}</p>
         </div>
       </div>
     </section>

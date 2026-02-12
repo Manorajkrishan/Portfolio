@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Eye } from 'lucide-react'
+import { Github, Eye, ExternalLink } from 'lucide-react'
 import { portfolio } from '../data/portfolio'
 import './Projects.css'
 
 const Projects = () => {
   const [filter, setFilter] = useState('all')
 
-  const projects = portfolio.projects.items
-  const categories = portfolio.projects.categories
+  const projectsSection = portfolio.projects
+  const projects = projectsSection.items
+  const categories = projectsSection.categories
+  const allProjectsCta = projectsSection.allProjectsCta
 
   const filteredProjects = filter === 'all' 
     ? projects 
@@ -25,7 +27,17 @@ const Projects = () => {
           viewport={{ once: true }}
         >
           <h2>Featured Projects</h2>
-          <p>{portfolio.projects.subtitle}</p>
+          <p>{projectsSection.subtitle}</p>
+          {allProjectsCta ? (
+            <a
+              className="projects-all-link"
+              href={allProjectsCta.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {allProjectsCta.label} <ExternalLink size={16} />
+            </a>
+          ) : null}
         </motion.div>
 
         <motion.div 

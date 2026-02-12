@@ -1,8 +1,8 @@
 export const portfolio = {
   person: {
     name: 'Manoraj Krishan',
-    title: 'Full Stack Developer & AI Engineer',
-    tagline: 'Full Stack Developer | AI/ML Engineer | 36 GitHub Projects',
+    title: 'AI & Full Stack Product Engineer',
+    tagline: 'Building intelligent, scalable products from idea to deployment',
     location: 'Hatfield, United Kingdom',
     email: 'krishan142536@gmail.com',
     phoneE164: '+447456907934',
@@ -29,7 +29,7 @@ export const portfolio = {
   ],
 
   hero: {
-    headlinePrefix: "Hi, I'm",
+    headlinePrefix: "Engineering AI-powered products with real-world impact - I'm",
     description:
       'I build modern full-stack, AI, and mobile products with a focus on measurable outcomes. My recent work spans RegTech SaaS, ML security systems, predictive analytics, and developer tools.',
     primaryCta: { label: 'View Projects', targetId: 'projects' },

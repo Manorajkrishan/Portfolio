@@ -29,7 +29,7 @@ export const portfolio = {
   ],
 
   hero: {
-    headlinePrefix: "Engineering AI-powered products with real-world impact - I'm",
+    headlinePrefix: "Hi, I'm",
     description:
       'I build modern full-stack, AI, and mobile products with a focus on measurable outcomes. My recent work spans RegTech SaaS, ML security systems, predictive analytics, and developer tools.',
     primaryCta: { label: 'View Projects', targetId: 'projects' },

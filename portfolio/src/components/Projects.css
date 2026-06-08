@@ -226,16 +226,38 @@
 }
 
 .project-card {
+  --project-rx: 0deg;
+  --project-ry: 0deg;
+  --project-spot-x: 50%;
+  --project-spot-y: 0%;
+  border-radius: 1rem;
+  position: relative;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+.project-card-inner {
+  height: 100%;
   background: rgba(255, 255, 255, 0.72);
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 24px 65px -55px rgba(2, 6, 23, 0.55);
   border: 1px solid rgba(148, 163, 184, 0.28);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition:
+    transform 0.22s ease-out,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    filter 0.25s ease;
   position: relative;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transform: perspective(1200px) translateZ(0);
+  transform:
+    rotateX(var(--project-rx))
+    rotateY(var(--project-ry))
+    translateZ(0);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .project-card:nth-child(6n + 1) {
@@ -246,12 +268,12 @@
   height: 260px;
 }
 
-.dark .project-card {
+.dark .project-card-inner {
   background: rgba(15, 23, 42, 0.45);
   border-color: rgba(51, 65, 85, 0.55);
 }
 
-.project-card::before {
+.project-card-inner::before {
   content: '';
   position: absolute;
   top: 0;
@@ -263,20 +285,48 @@
   z-index: 1;
 }
 
-.project-card:hover::before {
+.project-card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(520px 260px at var(--project-spot-x) var(--project-spot-y), rgba(255, 255, 255, 0.34), transparent 58%),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.08), transparent 36%, rgba(139, 92, 246, 0.08));
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.dark .project-card-inner::after {
+  background:
+    radial-gradient(520px 260px at var(--project-spot-x) var(--project-spot-y), rgba(59, 130, 246, 0.24), transparent 58%),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.12), transparent 36%, rgba(139, 92, 246, 0.12));
+}
+
+.project-card:hover .project-card-inner::before {
   left: 100%;
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
+.project-card:hover .project-card-inner {
+  transform:
+    rotateX(var(--project-rx))
+    rotateY(var(--project-ry))
+    translateZ(34px);
   box-shadow: 0 45px 110px -70px rgba(2, 6, 23, 0.85);
   border-color: rgba(59, 130, 246, 0.45);
+  filter: saturate(1.05);
+}
+
+.project-card:hover .project-card-inner::after {
+  opacity: 1;
 }
 
 .project-image {
   position: relative;
   overflow: hidden;
   height: 200px;
+  transform: translateZ(24px);
 }
 
 .project-image img {
@@ -303,6 +353,7 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 3;
 }
 
 .project-card:hover .project-overlay {
@@ -326,6 +377,7 @@
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: var(--shadow-md);
+  transform: translateZ(45px);
 }
 
 .project-links a:hover {
@@ -336,6 +388,9 @@
 
 .project-content {
   padding: 2rem;
+  position: relative;
+  z-index: 2;
+  transform: translateZ(36px);
 }
 
 .project-meta {
@@ -407,11 +462,18 @@
   border: 1px solid rgba(148, 163, 184, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .dark .tech-tag {
   background: rgba(2, 6, 23, 0.22);
   border-color: rgba(51, 65, 85, 0.55);
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px) translateZ(12px);
+  border-color: rgba(59, 130, 246, 0.36);
+  color: var(--primary-color);
 }
 
 /* Large Desktop */
@@ -453,6 +515,11 @@
 
   .project-card:nth-child(6n + 1) {
     grid-column: span 1;
+  }
+
+  .project-card-inner,
+  .project-card:hover .project-card-inner {
+    transform: none;
   }
 
   .project-image {
@@ -548,6 +615,11 @@
     width: 44px;
     height: 44px;
   }
+
+  .project-image,
+  .project-content {
+    transform: none;
+  }
 }
 
 /* Small Mobile */
@@ -628,5 +700,20 @@
   .tech-tag {
     font-size: 0.625rem;
     padding: 0.2rem 0.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-inner,
+  .project-card:hover .project-card-inner,
+  .project-image,
+  .project-content,
+  .project-links a {
+    transform: none;
+  }
+
+  .project-card-inner::before,
+  .project-card-inner::after {
+    display: none;
   }
 }

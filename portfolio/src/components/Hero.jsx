@@ -82,13 +82,47 @@ const Hero = () => {
     return () => ctx.revert()
   }, [])
 
+  const handleHeroPointerMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - rect.left) / rect.width - 0.5
+    const y = (event.clientY - rect.top) / rect.height - 0.5
+
+    event.currentTarget.style.setProperty('--hero-ry', `${x * 10}deg`)
+    event.currentTarget.style.setProperty('--hero-rx', `${y * -10}deg`)
+    event.currentTarget.style.setProperty('--hero-parallax-x', `${x * 22}px`)
+    event.currentTarget.style.setProperty('--hero-parallax-y', `${y * 22}px`)
+    event.currentTarget.style.setProperty('--hero-glow-x', `${(x + 0.5) * 100}%`)
+    event.currentTarget.style.setProperty('--hero-glow-y', `${(y + 0.5) * 100}%`)
+  }
+
+  const resetHeroPointer = (event) => {
+    event.currentTarget.style.setProperty('--hero-ry', '0deg')
+    event.currentTarget.style.setProperty('--hero-rx', '0deg')
+    event.currentTarget.style.setProperty('--hero-parallax-x', '0px')
+    event.currentTarget.style.setProperty('--hero-parallax-y', '0px')
+    event.currentTarget.style.setProperty('--hero-glow-x', '50%')
+    event.currentTarget.style.setProperty('--hero-glow-y', '35%')
+  }
+
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section id="hero" className="hero" ref={heroRef}>
+    <section
+      id="hero"
+      className="hero"
+      ref={heroRef}
+      onMouseMove={handleHeroPointerMove}
+      onMouseLeave={resetHeroPointer}
+    >
       <ParticleBackground />
+      <div className="hero-depth-scene" aria-hidden="true">
+        <span className="depth-orb depth-orb-1" />
+        <span className="depth-orb depth-orb-2" />
+        <span className="depth-grid-card depth-grid-card-1" />
+        <span className="depth-grid-card depth-grid-card-2" />
+      </div>
       <div className="container">
         <div className="hero-content">
           <div className="hero-text">
@@ -182,22 +216,25 @@ const Hero = () => {
           </div>
 
           <div className="hero-image" ref={imageRef}>
-            <div className="image-placeholder shine">
-              <img
-                src={portfolio.person.image.src}
-                alt={portfolio.person.image.alt}
-                onError={(e) => {
-                  e.target.src = portfolio.person.image.fallback
-                }}
-              />
-            </div>
-            <div className="hero-orbit" aria-hidden="true">
-              {portfolio.hero.orbitCards.map((card, index) => (
-                <div className={`orbit-card orbit-card-${index + 1}`} key={card.label}>
-                  <strong>{card.value}</strong>
-                  <span>{card.label}</span>
-                </div>
-              ))}
+            <div className="hero-portrait-stage">
+              <div className="hero-portrait-halo" aria-hidden="true" />
+              <div className="image-placeholder shine">
+                <img
+                  src={portfolio.person.image.src}
+                  alt={portfolio.person.image.alt}
+                  onError={(e) => {
+                    e.target.src = portfolio.person.image.fallback
+                  }}
+                />
+              </div>
+              <div className="hero-orbit" aria-hidden="true">
+                {portfolio.hero.orbitCards.map((card, index) => (
+                  <div className={`orbit-card orbit-card-${index + 1}`} key={card.label}>
+                    <strong>{card.value}</strong>
+                    <span>{card.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

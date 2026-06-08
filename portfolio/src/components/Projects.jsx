@@ -11,6 +11,11 @@ const Projects = () => {
   const projects = projectsSection.items
   const categories = projectsSection.categories
   const allProjectsCta = projectsSection.allProjectsCta
+  const repoInsights = projectsSection.repoInsights
+  const categoryLabels = categories.reduce((labels, category) => {
+    labels[category.key] = category.label
+    return labels
+  }, {})
 
   const filteredProjects = filter === 'all' 
     ? projects 
@@ -39,6 +44,44 @@ const Projects = () => {
             </a>
           ) : null}
         </motion.div>
+
+        {repoInsights ? (
+          <motion.div
+            className="project-lab"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <div className="project-lab-copy">
+              <span className="project-lab-eyebrow">{repoInsights.eyebrow}</span>
+              <h3>{repoInsights.title}</h3>
+              <p>{repoInsights.description}</p>
+            </div>
+
+            <div className="project-lab-stats" aria-label="GitHub repository summary">
+              {repoInsights.stats.map((stat) => (
+                <div className="project-lab-stat" key={stat.label}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="project-lab-lanes">
+              {repoInsights.lanes.map((lane) => (
+                <div className="project-lane" key={lane.title}>
+                  <h4>{lane.title}</h4>
+                  <div className="project-lane-tags">
+                    {lane.projects.map((project) => (
+                      <span key={project}>{project}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
 
         <motion.div 
           className="project-filters"
@@ -86,6 +129,10 @@ const Projects = () => {
               </div>
               
               <div className="project-content">
+                <div className="project-meta">
+                  <span>{categoryLabels[project.category] || project.category}</span>
+                  <span>#{String(index + 1).padStart(2, '0')}</span>
+                </div>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 

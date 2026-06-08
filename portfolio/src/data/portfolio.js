@@ -35,6 +35,16 @@ export const portfolio = {
     primaryCta: { label: 'View Projects', targetId: 'projects' },
     secondaryCta: { label: 'Contact Me', targetId: 'contact' },
     badges: ['React', 'Next.js', 'Node.js', 'FastAPI', 'Flask', 'Python', 'Flutter', 'AI/ML'],
+    proofPoints: [
+      { value: '34', label: 'Original public repos' },
+      { value: '12', label: 'Tech families explored' },
+      { value: '2026', label: 'AI + product build focus' },
+    ],
+    orbitCards: [
+      { value: 'AI', label: 'RegTech, NeuroSync, TermoGrid' },
+      { value: 'SaaS', label: 'Product, POS, CV Builder' },
+      { value: 'Mobile', label: 'Flutter, Kotlin, React Native' },
+    ],
     // If you add a PDF to `public/`, set resumeUrl to "/Your_Resume.pdf"
     resumeUrl: null,
   },
@@ -355,6 +365,32 @@ export const portfolio = {
       label: 'View all 37 repositories on GitHub',
       url: 'https://github.com/Manorajkrishan?tab=repositories',
     },
+    repoInsights: {
+      eyebrow: 'GitHub project lab',
+      title: 'A portfolio shaped from full-stack products, AI experiments, mobile apps, and real business workflows.',
+      description:
+        'I reviewed the public GitHub profile and grouped the work into product lanes so visitors can quickly understand the range behind the featured projects.',
+      stats: [
+        { value: '37', label: 'Public repositories' },
+        { value: '34', label: 'Original builds' },
+        { value: '12', label: 'Language and stack families' },
+        { value: '20+', label: 'Featured project snapshots' },
+      ],
+      lanes: [
+        {
+          title: 'AI, Data & Research',
+          projects: ['RegTech', 'TermoGrid', 'NeuroSync', 'UAV Forensics', 'WheelWorth'],
+        },
+        {
+          title: 'Business & Product Apps',
+          projects: ['Product Management', 'POS System', 'CCTV', 'Hotel Booking', 'CV Builder'],
+        },
+        {
+          title: 'Mobile, Backend & Embedded',
+          projects: ['Student App', 'Habit Tracker', 'TODO SQLite', 'Parcel Service', 'Temperature Sensor'],
+        },
+      ],
+    },
     categories: [
       { key: 'all', label: 'All Projects' },
       { key: 'research', label: 'Research' },
@@ -412,6 +448,18 @@ export const portfolio = {
         category: 'research',
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/NeuroSync',
+      },
+      {
+        id: 20,
+        title: 'Interactive Portfolio Website',
+        description:
+          'This React + Vite portfolio built here with dark mode, animated sections, data-driven content, project filtering, and a refreshed unique project-lab UI.',
+        image:
+          'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
+        technologies: ['React', 'Vite', 'GSAP', 'Framer Motion', 'CSS', 'Data-driven UI'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Portfolio',
       },
       {
         id: 5,
@@ -592,6 +640,30 @@ export const portfolio = {
         category: 'backend',
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/Hotel-booking-syste',
+      },
+      {
+        id: 21,
+        title: 'Temperature Sensor',
+        description:
+          'C++ sensor project showing embedded-programming practice for capturing and handling temperature data from connected hardware.',
+        image:
+          'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=400&h=250&fit=crop',
+        technologies: ['C++', 'Embedded Systems', 'Sensors', 'Hardware'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Temperature-sensor-',
+      },
+      {
+        id: 22,
+        title: 'Thelucifer Automation Toolkit',
+        description:
+          'PowerShell-based automation repository that expands the portfolio into scripting, tooling, and Windows workflow automation.',
+        image:
+          'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=400&h=250&fit=crop',
+        technologies: ['PowerShell', 'Automation', 'Scripting', 'Tooling'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Thelucifer',
       },
     ],
   },

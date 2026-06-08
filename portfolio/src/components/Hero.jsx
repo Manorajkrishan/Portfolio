@@ -120,6 +120,15 @@ const Hero = () => {
               ))}
             </div>
 
+            <div className="hero-proof-strip" aria-label="Repository highlights">
+              {portfolio.hero.proofPoints.map((point) => (
+                <div className="hero-proof" key={point.label}>
+                  <strong>{point.value}</strong>
+                  <span>{point.label}</span>
+                </div>
+              ))}
+            </div>
+
             <div className="hero-buttons" ref={buttonsRef}>
               <button
                 className="btn btn-primary"
@@ -181,6 +190,14 @@ const Hero = () => {
                   e.target.src = portfolio.person.image.fallback
                 }}
               />
+            </div>
+            <div className="hero-orbit" aria-hidden="true">
+              {portfolio.hero.orbitCards.map((card, index) => (
+                <div className={`orbit-card orbit-card-${index + 1}`} key={card.label}>
+                  <strong>{card.value}</strong>
+                  <span>{card.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

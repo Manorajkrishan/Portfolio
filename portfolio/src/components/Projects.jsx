@@ -11,10 +11,33 @@ const Projects = () => {
   const projects = projectsSection.items
   const categories = projectsSection.categories
   const allProjectsCta = projectsSection.allProjectsCta
+  const repoInsights = projectsSection.repoInsights
+  const categoryLabels = categories.reduce((labels, category) => {
+    labels[category.key] = category.label
+    return labels
+  }, {})
 
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.category === filter)
+
+  const handleProjectPointerMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - rect.left) / rect.width
+    const y = (event.clientY - rect.top) / rect.height
+
+    event.currentTarget.style.setProperty('--project-rx', `${(0.5 - y) * 10}deg`)
+    event.currentTarget.style.setProperty('--project-ry', `${(x - 0.5) * 12}deg`)
+    event.currentTarget.style.setProperty('--project-spot-x', `${x * 100}%`)
+    event.currentTarget.style.setProperty('--project-spot-y', `${y * 100}%`)
+  }
+
+  const resetProjectPointer = (event) => {
+    event.currentTarget.style.setProperty('--project-rx', '0deg')
+    event.currentTarget.style.setProperty('--project-ry', '0deg')
+    event.currentTarget.style.setProperty('--project-spot-x', '50%')
+    event.currentTarget.style.setProperty('--project-spot-y', '0%')
+  }
 
   return (
     <section id="projects" className="projects">
@@ -40,6 +63,44 @@ const Projects = () => {
           ) : null}
         </motion.div>
 
+        {repoInsights ? (
+          <motion.div
+            className="project-lab"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <div className="project-lab-copy">
+              <span className="project-lab-eyebrow">{repoInsights.eyebrow}</span>
+              <h3>{repoInsights.title}</h3>
+              <p>{repoInsights.description}</p>
+            </div>
+
+            <div className="project-lab-stats" aria-label="GitHub repository summary">
+              {repoInsights.stats.map((stat) => (
+                <div className="project-lab-stat" key={stat.label}>
+                  <strong>{stat.value}</strong>
+                  <span>{stat.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="project-lab-lanes">
+              {repoInsights.lanes.map((lane) => (
+                <div className="project-lane" key={lane.title}>
+                  <h4>{lane.title}</h4>
+                  <div className="project-lane-tags">
+                    {lane.projects.map((project) => (
+                      <span key={project}>{project}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
+
         <motion.div 
           className="project-filters"
           initial={{ opacity: 0, y: 30 }}
@@ -63,38 +124,47 @@ const Projects = () => {
             <motion.div
               key={project.id}
               className="project-card"
+              style={{ '--project-delay': `${Math.min(index * 0.05, 0.45)}s` }}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: Math.min(index * 0.06, 0.5) }}
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
+              onPointerMove={handleProjectPointerMove}
+              onPointerLeave={resetProjectPointer}
             >
-              <div className="project-image">
-                <img src={project.image} alt={project.title} />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <Eye size={20} />
+              <div className="project-card-inner">
+                <div className="project-image">
+                  <img src={project.image} alt={project.title} />
+                  <div className="project-overlay">
+                    <div className="project-links">
+                      {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <Eye size={20} />
+                        </a>
+                      )}
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github size={20} />
                       </a>
-                    )}
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github size={20} />
-                    </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                
-                <div className="project-technologies">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
+
+                <div className="project-content">
+                  <div className="project-meta">
+                    <span>{categoryLabels[project.category] || project.category}</span>
+                    <span>#{String(index + 1).padStart(2, '0')}</span>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+
+                  <div className="project-technologies">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span key={techIndex} className="tech-tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

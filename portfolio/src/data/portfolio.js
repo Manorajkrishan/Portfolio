@@ -1,8 +1,8 @@
 export const portfolio = {
   person: {
     name: 'Manoraj Krishan',
-    title: 'Full Stack Developer & AI Engineer',
-    tagline: 'Full Stack Developer | AI/ML Engineer | 36 GitHub Projects',
+    title: 'Full Stack Developer, AI/ML Engineer & Product Builder',
+    tagline: 'Full Stack Developer | AI/ML Engineer | 37 GitHub Projects',
     location: 'Hatfield, United Kingdom',
     email: 'krishan142536@gmail.com',
     phoneE164: '+447456907934',
@@ -31,24 +31,34 @@ export const portfolio = {
   hero: {
     headlinePrefix: "Hi, I'm",
     description:
-      'I build modern full-stack, AI, and mobile products with a focus on measurable outcomes. My recent work spans RegTech SaaS, ML security systems, predictive analytics, and developer tools.',
+      'I build modern full-stack, AI/ML, data, and mobile products with a focus on measurable outcomes. My latest work spans RegTech SaaS, ML security systems, predictive analytics, POS/product management tools, and mobile applications.',
     primaryCta: { label: 'View Projects', targetId: 'projects' },
     secondaryCta: { label: 'Contact Me', targetId: 'contact' },
-    badges: ['React', 'Next.js', 'Node.js', 'FastAPI', 'Python', 'Flutter', 'AI/ML'],
+    badges: ['React', 'Next.js', 'Node.js', 'FastAPI', 'Flask', 'Python', 'Flutter', 'AI/ML'],
+    proofPoints: [
+      { value: '34', label: 'Original public repos' },
+      { value: '12', label: 'Tech families explored' },
+      { value: '2026', label: 'AI + product build focus' },
+    ],
+    orbitCards: [
+      { value: 'AI', label: 'RegTech, NeuroSync, TermoGrid' },
+      { value: 'SaaS', label: 'Product, POS, CV Builder' },
+      { value: 'Mobile', label: 'Flutter, Kotlin, React Native' },
+    ],
     // If you add a PDF to `public/`, set resumeUrl to "/Your_Resume.pdf"
     resumeUrl: null,
   },
 
   about: {
-    heading: 'I turn ideas into production-ready products across web, AI, and mobile.',
+    heading: 'I turn ideas into production-ready products across web, AI, data, and mobile.',
     paragraphs: [
-      'I am a full stack engineer with hands-on experience shipping MERN, .NET, and Python-based applications from concept to deployment.',
-      'My recent GitHub development includes 36 public repositories covering AI SaaS, forecasting systems, firmware forensics, fintech tooling, and mobile products.',
-      'I care about clean architecture, reliable delivery, and practical product value backed by clear technical execution.',
+      'I am a full stack engineer with hands-on experience shipping MERN, .NET, Python, and mobile applications from concept to deployment.',
+      'My current GitHub portfolio includes 37 public repositories covering AI SaaS, forecasting systems, firmware forensics, product management, POS workflows, fintech tooling, and mobile products.',
+      'I care about clean architecture, reliable delivery, practical product value, and technical execution that is easy to maintain and extend.',
     ],
     stats: [
-      { value: '36', label: 'Public GitHub Repositories' },
-      { value: '12+', label: 'End-to-End Apps Delivered' },
+      { value: '37', label: 'Public GitHub Repositories' },
+      { value: '15+', label: 'End-to-End Apps Delivered' },
       { value: '95%', label: 'Best ML Detection Accuracy' },
     ],
     features: [
@@ -84,9 +94,9 @@ export const portfolio = {
         org: 'GitHub Projects / Personal Labs',
         date: '2025 - Present',
         bullets: [
-          'Built and maintained 36 public repositories spanning AI/ML, full-stack SaaS, security research, and mobile applications.',
-          'Delivered recent systems including RegTech (ESG automation), TermoGrid (RL thermal optimization), and Smart Function Recommender (NLP-powered developer tooling).',
-          'Focused on practical engineering outcomes: strong documentation, robust architecture, and production-oriented implementation quality.',
+          'Built and maintained 37 public repositories spanning AI/ML, full-stack SaaS, security research, business tools, and mobile applications.',
+          'Delivered recent systems including RegTech, TermoGrid, Smart Function Recommender, NeuroSync, Product Management, POS System, and WheelWorth.',
+          'Focused on practical engineering outcomes: clear product workflows, robust architecture, maintainable code, and production-oriented implementation quality.',
         ],
       },
       {
@@ -182,9 +192,24 @@ export const portfolio = {
             color: '#02569B',
           },
           {
+            name: 'Dart',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg',
+            color: '#0175C2',
+          },
+          {
             name: 'React Native',
             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
             color: '#61DAFB',
+          },
+          {
+            name: 'Kotlin',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+            color: '#7F52FF',
+          },
+          {
+            name: 'Android',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg',
+            color: '#3DDC84',
           },
           {
             name: 'Tailwind CSS',
@@ -220,6 +245,11 @@ export const portfolio = {
             name: 'FastAPI',
             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
             color: '#009688',
+          },
+          {
+            name: 'Flask',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
+            color: '#111827',
           },
           {
             name: 'ASP.NET Core',
@@ -282,6 +312,16 @@ export const portfolio = {
             color: '#F7931E',
           },
           {
+            name: 'Streamlit',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg',
+            color: '#FF4B4B',
+          },
+          {
+            name: 'ML.NET',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg',
+            color: '#512BD4',
+          },
+          {
             name: 'OpenCV',
             icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',
             color: '#5C3EE8',
@@ -316,14 +356,40 @@ export const portfolio = {
     ],
     summaryHeading: 'Current Focus',
     summary:
-      'I am actively shipping projects that combine strong product UX with robust backend engineering and practical AI integration, especially in forecasting, compliance, and intelligent automation.',
+      'I am actively shipping projects that combine strong product UX with robust backend engineering and practical AI integration, especially in compliance automation, forecasting, business operations, and intelligent developer tools.',
   },
 
   projects: {
-    subtitle: 'Selected highlights from my recent development updates',
+    subtitle: 'Selected highlights from my latest public repositories and product builds',
     allProjectsCta: {
-      label: 'View all 36 repositories on GitHub',
+      label: 'View all 37 repositories on GitHub',
       url: 'https://github.com/Manorajkrishan?tab=repositories',
+    },
+    repoInsights: {
+      eyebrow: 'GitHub project lab',
+      title: 'A portfolio shaped from full-stack products, AI experiments, mobile apps, and real business workflows.',
+      description:
+        'I reviewed the public GitHub profile and grouped the work into product lanes so visitors can quickly understand the range behind the featured projects.',
+      stats: [
+        { value: '37', label: 'Public repositories' },
+        { value: '34', label: 'Original builds' },
+        { value: '12', label: 'Language and stack families' },
+        { value: '20+', label: 'Featured project snapshots' },
+      ],
+      lanes: [
+        {
+          title: 'AI, Data & Research',
+          projects: ['RegTech', 'TermoGrid', 'NeuroSync', 'UAV Forensics', 'WheelWorth'],
+        },
+        {
+          title: 'Business & Product Apps',
+          projects: ['Product Management', 'POS System', 'CCTV', 'Hotel Booking', 'CV Builder'],
+        },
+        {
+          title: 'Mobile, Backend & Embedded',
+          projects: ['Student App', 'Habit Tracker', 'TODO SQLite', 'Parcel Service', 'Temperature Sensor'],
+        },
+      ],
     },
     categories: [
       { key: 'all', label: 'All Projects' },
@@ -331,6 +397,7 @@ export const portfolio = {
       { key: 'fullstack', label: 'Full Stack' },
       { key: 'ai', label: 'AI/ML' },
       { key: 'mobile', label: 'Mobile' },
+      { key: 'business', label: 'Business Apps' },
       { key: 'backend', label: 'Backend' },
     ],
     items: [
@@ -381,6 +448,18 @@ export const portfolio = {
         category: 'research',
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/NeuroSync',
+      },
+      {
+        id: 20,
+        title: 'Interactive Portfolio Website',
+        description:
+          'This React + Vite portfolio built here with dark mode, animated sections, data-driven content, project filtering, and a refreshed unique project-lab UI.',
+        image:
+          'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
+        technologies: ['React', 'Vite', 'GSAP', 'Framer Motion', 'CSS', 'Data-driven UI'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Portfolio',
       },
       {
         id: 5,
@@ -502,6 +581,90 @@ export const portfolio = {
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/Mortgage-interest-prediction-',
       },
+      {
+        id: 15,
+        title: 'WheelWorth - Car Price Prediction',
+        description:
+          'Web-based car price prediction system using machine learning models with a user-friendly interface for estimating vehicle value.',
+        image:
+          'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=400&h=250&fit=crop',
+        technologies: ['Python', 'Machine Learning', 'HTML', 'CSS', 'Prediction Models'],
+        category: 'ai',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/WheelWorth',
+      },
+      {
+        id: 16,
+        title: 'Product Management App',
+        description:
+          'JavaScript product management application focused on practical product data workflows, responsive UI, and lightweight business operations.',
+        image:
+          'https://images.unsplash.com/photo-1556740758-90de374c12ad?w=400&h=250&fit=crop',
+        technologies: ['JavaScript', 'CSS', 'Product Workflows', 'Responsive UI'],
+        category: 'business',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Product-Management',
+      },
+      {
+        id: 17,
+        title: 'POS System',
+        description:
+          'Point-of-sale focused JavaScript application for sales workflows, checkout-style interactions, and business transaction management.',
+        image:
+          'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=400&h=250&fit=crop',
+        technologies: ['JavaScript', 'HTML', 'CSS', 'POS Workflows'],
+        category: 'business',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/POS-System',
+      },
+      {
+        id: 18,
+        title: 'CCTV Management App',
+        description:
+          'JavaScript-based CCTV project exploring monitoring-oriented interface workflows with web technologies and deployment scripts.',
+        image:
+          'https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=400&h=250&fit=crop',
+        technologies: ['JavaScript', 'HTML', 'CSS', 'Batchfile'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/CCTV',
+      },
+      {
+        id: 19,
+        title: 'Hotel Booking System',
+        description:
+          'Python hotel booking project for reservation-style workflows, backend logic, and command/script-assisted setup.',
+        image:
+          'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
+        technologies: ['Python', 'Shell', 'Booking Workflows'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Hotel-booking-syste',
+      },
+      {
+        id: 21,
+        title: 'Temperature Sensor',
+        description:
+          'C++ sensor project showing embedded-programming practice for capturing and handling temperature data from connected hardware.',
+        image:
+          'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=400&h=250&fit=crop',
+        technologies: ['C++', 'Embedded Systems', 'Sensors', 'Hardware'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Temperature-sensor-',
+      },
+      {
+        id: 22,
+        title: 'Thelucifer Automation Toolkit',
+        description:
+          'PowerShell-based automation repository that expands the portfolio into scripting, tooling, and Windows workflow automation.',
+        image:
+          'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=400&h=250&fit=crop',
+        technologies: ['PowerShell', 'Automation', 'Scripting', 'Tooling'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Thelucifer',
+      },
     ],
   },
 
@@ -555,7 +718,7 @@ export const portfolio = {
       'Full Stack Product Development',
       'AI/ML & LLM Integrations',
       'Mobile App Development',
-      'FinTech and RegTech Solutions',
+      'FinTech, RegTech, and Business Automation',
     ],
   },
 }

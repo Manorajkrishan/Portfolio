@@ -3,7 +3,7 @@ export const portfolio = {
     name: 'Manoraj Krishan',
     title: 'Full Stack Developer, AI/ML Engineer & Product Builder',
     tagline: 'Full Stack Developer | AI/ML Engineer | 37 GitHub Projects',
-    location: 'Hatfield, United Kingdom',
+    location: 'Sutton, London, United Kingdom',
     email: 'krishan142536@gmail.com',
     phoneE164: '+447456907934',
     phoneDisplay: '+44 7456 907934',

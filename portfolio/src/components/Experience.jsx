@@ -25,10 +25,13 @@ const Experience = () => {
         </motion.div>
 
         <div className="experience-timeline">
-          {portfolio.experience.items.map((item, idx) => (
+          {portfolio.experience.items.map((item, idx) => {
+            const isCurrent = item.date.includes('Present')
+
+            return (
             <motion.div
               key={`${item.type}-${item.title}-${item.org}`}
-              className="experience-item"
+              className={`experience-item${idx === 0 && isCurrent ? ' experience-item-current' : ''}`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
@@ -38,10 +41,15 @@ const Experience = () => {
                 {iconByType[item.type]}
               </div>
 
-              <div className="experience-card">
+              <div className={`experience-card${idx === 0 && isCurrent ? ' experience-card-current' : ''}`}>
                 <div className="experience-card-header">
                   <div>
-                    <h3 className="experience-title">{item.title}</h3>
+                    <div className="experience-title-row">
+                      <h3 className="experience-title">{item.title}</h3>
+                      {isCurrent && (
+                        <span className="experience-current-badge">Current</span>
+                      )}
+                    </div>
                     <div className="experience-org">{item.org}</div>
                   </div>
                   <div className="experience-date">{item.date}</div>
@@ -54,7 +62,8 @@ const Experience = () => {
                 </ul>
               </div>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

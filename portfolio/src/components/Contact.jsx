@@ -12,6 +12,7 @@ const Contact = () => {
     message: ''
   })
   const [status, setStatus] = useState({ type: 'idle', message: '' })
+  const formEndpoint = `https://formsubmit.co/ajax/${portfolio.person.email}`
 
   const handleChange = (e) => {
     if (status.type !== 'idle') setStatus({ type: 'idle', message: '' })
@@ -21,8 +22,7 @@ const Contact = () => {
     })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const openMailFallback = () => {
     const subject = formData.subject?.trim() || `Portfolio enquiry from ${formData.name || 'someone'}`
     const body = [
       `Name: ${formData.name}`,
@@ -31,19 +31,53 @@ const Contact = () => {
       formData.message,
     ].join('\n')
 
-    const mailto = `mailto:${encodeURIComponent(portfolio.person.email)}?subject=${encodeURIComponent(
+    window.location.href = `mailto:${encodeURIComponent(portfolio.person.email)}?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(body)}`
+  }
 
-    setStatus({ type: 'success', message: 'Opening your email app…' })
-    window.location.href = mailto
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const subject = formData.subject?.trim() || `Portfolio enquiry from ${formData.name || 'someone'}`
 
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    })
+    const payload = new FormData()
+    payload.append('name', formData.name)
+    payload.append('email', formData.email)
+    payload.append('subject', subject)
+    payload.append('message', formData.message)
+    payload.append('_subject', subject)
+    payload.append('_replyto', formData.email)
+    payload.append('_template', 'table')
+    payload.append('_captcha', 'false')
+
+    try {
+      setStatus({ type: 'submitting', message: 'Sending your message...' })
+      const response = await fetch(formEndpoint, {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error('Form submission failed')
+      }
+
+      setStatus({ type: 'success', message: 'Message sent successfully. I will reply soon.' })
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      })
+    } catch {
+      setStatus({
+        type: 'error',
+        message: 'Direct sending failed, so your email app is opening as a fallback.',
+      })
+      openMailFallback()
+    }
   }
 
   const contactInfo = [
@@ -205,11 +239,12 @@ const Contact = () => {
               <motion.button 
                 type="submit"
                 className="btn btn-primary"
+                disabled={status.type === 'submitting'}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Send size={20} />
-                Send Message
+                {status.type === 'submitting' ? 'Sending...' : 'Send Message'}
               </motion.button>
 
               {status.type !== 'idle' && (

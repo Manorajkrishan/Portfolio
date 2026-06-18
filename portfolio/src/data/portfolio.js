@@ -1,9 +1,9 @@
 export const portfolio = {
   person: {
     name: 'Manoraj Krishan',
-    title: 'Full Stack Developer, AI/ML Engineer & Product Builder',
-    tagline: 'Full Stack Developer | AI/ML Engineer | 37 GitHub Projects',
-    location: 'Hatfield, United Kingdom',
+    title: 'QA Engineer Intern | Full Stack Developer & AI/ML Engineer',
+    tagline: 'QA Engineer @ Thrive 360 | Full Stack & AI Builder | 37 GitHub Projects',
+    location: 'Colombo, Sri Lanka · Open to remote',
     email: 'krishan142536@gmail.com',
     phoneE164: '+447456907934',
     phoneDisplay: '+44 7456 907934',
@@ -30,18 +30,19 @@ export const portfolio = {
 
   hero: {
     headlinePrefix: "Hi, I'm",
+    statusPill: 'QA Engineer Intern @ Thrive 360',
     description:
-      'I build modern full-stack, AI/ML, data, and mobile products with a focus on measurable outcomes. My latest work spans RegTech SaaS, ML security systems, predictive analytics, POS/product management tools, and mobile applications.',
+      'I combine structured QA practices with full-stack and AI/ML engineering to ship reliable web, mobile, and data products. Currently testing products at Thrive 360 in Colombo while continuing to build AI SaaS, forecasting systems, and developer tools in my personal labs.',
     primaryCta: { label: 'View Projects', targetId: 'projects' },
     secondaryCta: { label: 'Contact Me', targetId: 'contact' },
-    badges: ['React', 'Next.js', 'Node.js', 'FastAPI', 'Flask', 'Python', 'Flutter', 'AI/ML'],
+    badges: ['QA Testing', 'API Testing', 'React', 'Next.js', 'Node.js', 'FastAPI', 'Python', 'Jest'],
     proofPoints: [
       { value: '34', label: 'Original public repos' },
       { value: '12', label: 'Tech families explored' },
-      { value: '2026', label: 'AI + product build focus' },
+      { value: '2026', label: 'QA + product build focus' },
     ],
     orbitCards: [
-      { value: 'AI', label: 'RegTech, NeuroSync, TermoGrid' },
+      { value: 'QA', label: 'Testing, validation, quality' },
       { value: 'SaaS', label: 'Product, POS, CV Builder' },
       { value: 'Mobile', label: 'Flutter, Kotlin, React Native' },
     ],
@@ -50,10 +51,11 @@ export const portfolio = {
   },
 
   about: {
-    heading: 'I turn ideas into production-ready products across web, AI, data, and mobile.',
+    heading: 'I turn ideas into production-ready products across QA, web, AI, and mobile.',
     paragraphs: [
       'I am a full stack engineer with hands-on experience shipping MERN, .NET, Python, and mobile applications from concept to deployment.',
-      'My current GitHub portfolio includes 37 public repositories covering AI SaaS, forecasting systems, firmware forensics, product management, POS workflows, fintech tooling, and mobile products.',
+      'I recently completed my AI Engineering Trainee programme at ExaltAI and joined Thrive 360 in Colombo as a QA Engineer Intern, where I combine structured quality assurance with hands-on full-stack and AI experience.',
+      'My GitHub portfolio includes 37 public repositories covering AI SaaS, forecasting systems, firmware forensics, product management, POS workflows, fintech tooling, and mobile products.',
       'I care about clean architecture, reliable delivery, practical product value, and technical execution that is easy to maintain and extend.',
     ],
     stats: [
@@ -86,8 +88,20 @@ export const portfolio = {
   },
 
   experience: {
-    subtitle: 'Professional experience plus latest project development updates',
+    subtitle: 'Professional experience across QA, engineering, and product development',
     items: [
+      {
+        type: 'work',
+        title: 'QA Engineer Intern',
+        org: 'Thrive 360 (Colombo, Sri Lanka)',
+        date: '06/2026 - Present',
+        bullets: [
+          'Perform manual and exploratory testing across web and mobile products to identify defects before release.',
+          'Document test cases, bug reports, and regression scenarios to support reliable delivery cycles.',
+          'Collaborate with developers and product teams to validate features, edge cases, and user-facing quality.',
+          'Apply structured QA practices while leveraging full-stack and AI engineering background for deeper technical analysis.',
+        ],
+      },
       {
         type: 'work',
         title: 'Independent Full Stack & AI Builder',
@@ -101,9 +115,19 @@ export const portfolio = {
       },
       {
         type: 'work',
+        title: 'IT Support Technician',
+        org: 'VM Private Ltd (Favorite Chicken, North Cheam, UK)',
+        date: '03/2025 - 11/2025',
+        bullets: [
+          'Provided hardware, software, and POS support across multiple store locations.',
+          'Improved system availability through proactive maintenance, setup, and troubleshooting workflows.',
+        ],
+      },
+      {
+        type: 'work',
         title: 'AI Engineering Trainee',
         org: 'ExaltAI (London, UK)',
-        date: '06/2025 - Present',
+        date: '06/2025 - 04/2026',
         bullets: [
           'Built AI/ML solutions with Python, scikit-learn, and TensorFlow for real-world prediction and classification tasks.',
           'Improved model and data pipelines through preprocessing and feature engineering workflows.',
@@ -132,16 +156,6 @@ export const portfolio = {
         ],
       },
       {
-        type: 'work',
-        title: 'IT Support Technician',
-        org: 'VM Private Ltd (Favorite Chicken, North Cheam, UK)',
-        date: '03/2025 - 11/2025',
-        bullets: [
-          'Provided hardware, software, and POS support across multiple store locations.',
-          'Improved system availability through proactive maintenance, setup, and troubleshooting workflows.',
-        ],
-      },
-      {
         type: 'education',
         title: 'BSc (Hons) Computer Science (Software Engineering) - Second Upper',
         org: 'University of Hertfordshire (UK)',
@@ -163,6 +177,36 @@ export const portfolio = {
   skills: {
     subtitle: 'Technologies I use across current projects',
     categories: [
+      {
+        title: 'QA & Testing',
+        skills: [
+          {
+            name: 'Manual Testing',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg',
+            color: '#10b981',
+          },
+          {
+            name: 'Test Cases',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-plain.svg',
+            color: '#3b82f6',
+          },
+          {
+            name: 'Bug Tracking',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg',
+            color: '#ef4444',
+          },
+          {
+            name: 'Jest',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg',
+            color: '#99425B',
+          },
+          {
+            name: 'Postman',
+            icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg',
+            color: '#FF6C37',
+          },
+        ],
+      },
       {
         title: 'Web & Mobile Frameworks',
         skills: [
@@ -356,7 +400,7 @@ export const portfolio = {
     ],
     summaryHeading: 'Current Focus',
     summary:
-      'I am actively shipping projects that combine strong product UX with robust backend engineering and practical AI integration, especially in compliance automation, forecasting, business operations, and intelligent developer tools.',
+      'I am combining structured QA at Thrive 360 with hands-on full-stack and AI engineering — shipping projects that pair strong product UX with reliable quality, robust backends, and practical AI integration.',
   },
 
   projects: {
@@ -672,6 +716,13 @@ export const portfolio = {
     subtitle: 'Courses and credentials I have completed recently',
     items: [
       {
+        title: 'AI Engineering Trainee Programme',
+        issuer: 'ExaltAI (London, UK)',
+        date: '04/2026',
+        url: null,
+        tags: ['AI/ML'],
+      },
+      {
         title: 'AI/ML Engineer - Stage 2 & Stage 1',
         issuer: 'SLIIT Centre for Open and Distance Education',
         date: '06/2025',
@@ -715,6 +766,7 @@ export const portfolio = {
 
   footer: {
     services: [
+      'Quality Assurance & Test Automation',
       'Full Stack Product Development',
       'AI/ML & LLM Integrations',
       'Mobile App Development',

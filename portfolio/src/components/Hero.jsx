@@ -1,169 +1,66 @@
-import React, { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ArrowDown, Github, Linkedin, Mail, Phone, Sparkles } from 'lucide-react'
-import ParticleBackground from './ParticleBackground'
+import React from 'react'
+import { motion } from 'framer-motion'
+import { ArrowDown, Github, Linkedin, Mail, Phone, Zap } from 'lucide-react'
+import Marquee from './Marquee'
 import { portfolio } from '../data/portfolio'
 import './Hero.css'
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+  }),
+}
+
 const Hero = () => {
-  const heroRef = useRef(null)
-  const titleRef = useRef(null)
-  const subtitleRef = useRef(null)
-  const descriptionRef = useRef(null)
-  const buttonsRef = useRef(null)
-  const socialRef = useRef(null)
-  const imageRef = useRef(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline()
-
-      // Main entrance animations
-      tl.from(titleRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out"
-      })
-      .from(subtitleRef.current, {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
-      }, "-=0.5")
-      .from(descriptionRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
-      }, "-=0.3")
-      .from(buttonsRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.2,
-        ease: "power3.out"
-      }, "-=0.3")
-      .from(socialRef.current.children, {
-        y: 20,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power3.out",
-        rotation: 360
-      }, "-=0.2")
-      .from(imageRef.current, {
-        scale: 0.5,
-        opacity: 0,
-        duration: 1.2,
-        ease: "elastic.out(1, 0.5)"
-      }, "-=1")
-
-      // Continuous animations
-      gsap.to(titleRef.current.querySelector('.highlight'), {
-        backgroundPosition: "200% center",
-        duration: 3,
-        ease: "none",
-        repeat: -1
-      })
-
-      // Floating animation for social links
-      gsap.to(socialRef.current.children, {
-        y: -5,
-        duration: 2,
-        ease: "power2.inOut",
-        stagger: 0.2,
-        repeat: -1,
-        yoyo: true
-      })
-
-    }, heroRef)
-
-    return () => ctx.revert()
-  }, [])
-
-  const handleHeroPointerMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = (event.clientX - rect.left) / rect.width - 0.5
-    const y = (event.clientY - rect.top) / rect.height - 0.5
-
-    event.currentTarget.style.setProperty('--hero-ry', `${x * 10}deg`)
-    event.currentTarget.style.setProperty('--hero-rx', `${y * -10}deg`)
-    event.currentTarget.style.setProperty('--hero-parallax-x', `${x * 22}px`)
-    event.currentTarget.style.setProperty('--hero-parallax-y', `${y * 22}px`)
-    event.currentTarget.style.setProperty('--hero-glow-x', `${(x + 0.5) * 100}%`)
-    event.currentTarget.style.setProperty('--hero-glow-y', `${(y + 0.5) * 100}%`)
-  }
-
-  const resetHeroPointer = (event) => {
-    event.currentTarget.style.setProperty('--hero-ry', '0deg')
-    event.currentTarget.style.setProperty('--hero-rx', '0deg')
-    event.currentTarget.style.setProperty('--hero-parallax-x', '0px')
-    event.currentTarget.style.setProperty('--hero-parallax-y', '0px')
-    event.currentTarget.style.setProperty('--hero-glow-x', '50%')
-    event.currentTarget.style.setProperty('--hero-glow-y', '35%')
-  }
-
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section
-      id="hero"
-      className="hero"
-      ref={heroRef}
-      onMouseMove={handleHeroPointerMove}
-      onMouseLeave={resetHeroPointer}
-    >
-      <ParticleBackground />
-      <div className="hero-depth-scene" aria-hidden="true">
-        <span className="depth-orb depth-orb-1" />
-        <span className="depth-orb depth-orb-2" />
-        <span className="depth-grid-card depth-grid-card-1" />
-        <span className="depth-grid-card depth-grid-card-2" />
-      </div>
+    <section id="hero" className="hero">
       <div className="container">
-        <div className="hero-content">
-          <div className="hero-text">
-            <div className="hero-topline" aria-label="Highlights">
-              <span className="hero-pill">
-                <Sparkles size={16} /> {portfolio.hero.statusPill}
-              </span>
-              <span className="hero-pill hero-pill-muted">{portfolio.person.location}</span>
-            </div>
+        <div className="hero-grid">
+          <motion.div
+            className="hero-copy"
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div className="hero-status" variants={fadeUp} custom={0}>
+              <span className="hero-status-dot" />
+              <Zap size={14} />
+              {portfolio.hero.statusPill}
+            </motion.div>
 
-            <h1 className="hero-title" ref={titleRef}>
-              {portfolio.hero.headlinePrefix}{' '}
-              <span className="highlight">{portfolio.person.name}</span>
-            </h1>
+            <motion.p className="hero-kicker" variants={fadeUp} custom={1}>
+              {portfolio.hero.headlinePrefix}
+            </motion.p>
 
-            <p className="hero-subtitle" ref={subtitleRef}>
+            <motion.h1 className="hero-name" variants={fadeUp} custom={2}>
+              <span className="hero-name-line">{portfolio.person.name.split(' ')[0]}</span>
+              <span className="hero-name-line gradient-text">{portfolio.person.name.split(' ').slice(1).join(' ')}</span>
+            </motion.h1>
+
+            <motion.p className="hero-tagline" variants={fadeUp} custom={3}>
               {portfolio.person.tagline}
-            </p>
+            </motion.p>
 
-            <p className="hero-description" ref={descriptionRef}>
+            <motion.p className="hero-desc" variants={fadeUp} custom={4}>
               {portfolio.hero.description}
-            </p>
+            </motion.p>
 
-            <div className="hero-badges">
-              {portfolio.hero.badges.map((badge) => (
-                <span className="hero-badge" key={badge}>
-                  {badge}
-                </span>
-              ))}
-            </div>
-
-            <div className="hero-proof-strip" aria-label="Repository highlights">
+            <motion.div className="hero-stats" variants={fadeUp} custom={5}>
               {portfolio.hero.proofPoints.map((point) => (
-                <div className="hero-proof" key={point.label}>
+                <div className="hero-stat glass-card" key={point.label}>
                   <strong>{point.value}</strong>
                   <span>{point.label}</span>
                 </div>
               ))}
-            </div>
+            </motion.div>
 
-            <div className="hero-buttons" ref={buttonsRef}>
+            <motion.div className="hero-actions" variants={fadeUp} custom={6}>
               <button
                 className="btn btn-primary"
                 onClick={() => scrollToSection(portfolio.hero.primaryCta.targetId)}
@@ -187,38 +84,31 @@ const Hero = () => {
                   {portfolio.hero.secondaryCta.label}
                 </button>
               )}
-            </div>
+            </motion.div>
 
-            <div className="social-links" ref={socialRef}>
-              <a
-                href={portfolio.person.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <Github size={24} />
-              </a>
-              <a
-                href={portfolio.person.links.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={24} />
-              </a>
-              <a href={`mailto:${portfolio.person.email}`} aria-label="Email">
-                <Mail size={24} />
-              </a>
-              <a href={`tel:${portfolio.person.phoneE164}`} aria-label="Phone">
-                <Phone size={24} />
-              </a>
-            </div>
-          </div>
+            <motion.div className="hero-social" variants={fadeUp} custom={7}>
+              {[
+                { href: portfolio.person.links.github, icon: Github, label: 'GitHub' },
+                { href: portfolio.person.links.linkedin, icon: Linkedin, label: 'LinkedIn' },
+                { href: `mailto:${portfolio.person.email}`, icon: Mail, label: 'Email' },
+                { href: `tel:${portfolio.person.phoneE164}`, icon: Phone, label: 'Phone' },
+              ].map(({ href, icon: Icon, label }) => (
+                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                  <Icon size={20} />
+                </a>
+              ))}
+            </motion.div>
+          </motion.div>
 
-          <div className="hero-image" ref={imageRef}>
-            <div className="hero-portrait-stage">
-              <div className="hero-portrait-halo" aria-hidden="true" />
-              <div className="image-placeholder shine">
+          <motion.div
+            className="hero-visual"
+            initial={{ opacity: 0, scale: 0.85, rotateY: -15 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="hero-portrait-ring">
+              <div className="hero-portrait-glow" />
+              <div className="hero-portrait-frame">
                 <img
                   src={portfolio.person.image.src}
                   alt={portfolio.person.image.alt}
@@ -227,21 +117,49 @@ const Hero = () => {
                   }}
                 />
               </div>
-              <div className="hero-orbit" aria-hidden="true">
-                {portfolio.hero.orbitCards.map((card, index) => (
-                  <div className={`orbit-card orbit-card-${index + 1}`} key={card.label}>
-                    <strong>{card.value}</strong>
-                    <span>{card.label}</span>
-                  </div>
-                ))}
-              </div>
             </div>
-          </div>
+
+            <div className="hero-float-cards">
+              {portfolio.hero.orbitCards.map((card, index) => (
+                <motion.div
+                  key={card.label}
+                  className={`hero-float-card hero-float-card-${index + 1} glass-card`}
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3 + index, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <strong>{card.value}</strong>
+                  <span>{card.label}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="hero-location glass-card">
+              <span className="hero-location-label">Based in</span>
+              <span>{portfolio.person.location}</span>
+            </div>
+          </motion.div>
         </div>
 
-        <div className="scroll-indicator" onClick={() => scrollToSection('about')}>
-          <ArrowDown size={24} />
-        </div>
+        <motion.div
+          className="hero-marquee-wrap"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
+          <Marquee items={portfolio.hero.badges} speed={32} />
+        </motion.div>
+
+        <motion.button
+          className="hero-scroll"
+          onClick={() => scrollToSection('about')}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          aria-label="Scroll to about"
+        >
+          <span>Scroll</span>
+          <ArrowDown size={18} />
+        </motion.button>
       </div>
     </section>
   )

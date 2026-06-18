@@ -5,70 +5,72 @@ import { portfolio } from '../data/portfolio'
 import './Experience.css'
 
 const iconByType = {
-  work: <Briefcase size={18} />,
-  education: <GraduationCap size={18} />,
+  work: Briefcase,
+  education: GraduationCap,
 }
 
-const Experience = () => {
-  return (
-    <section id="experience" className="experience">
-      <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2>Experience</h2>
-          <p>{portfolio.experience.subtitle}</p>
-        </motion.div>
+const Experience = () => (
+  <section id="experience" className="experience">
+    <div className="container">
+      <motion.div
+        className="section-header"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <span className="section-eyebrow">02 — Experience</span>
+        <h2>
+          My <span className="gradient-text">journey</span> so far
+        </h2>
+        <p>{portfolio.experience.subtitle}</p>
+      </motion.div>
 
-        <div className="experience-timeline">
-          {portfolio.experience.items.map((item, idx) => {
-            const isCurrent = item.date.includes('Present')
+      <div className="exp-list">
+        {portfolio.experience.items.map((item, idx) => {
+          const Icon = iconByType[item.type]
+          const isCurrent = item.date.includes('Present')
 
-            return (
-            <motion.div
+          return (
+            <motion.article
               key={`${item.type}-${item.title}-${item.org}`}
-              className={`experience-item${idx === 0 && isCurrent ? ' experience-item-current' : ''}`}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              viewport={{ once: true }}
+              className={`exp-card glass-card${idx === 0 && isCurrent ? ' exp-card--current' : ''}`}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: idx * 0.08 }}
+              whileHover={{ x: 8 }}
             >
-              <div className="experience-dot" aria-hidden="true">
-                {iconByType[item.type]}
+              <div className="exp-card-side">
+                <div className="exp-icon">
+                  <Icon size={18} />
+                </div>
+                <div className="exp-line" />
               </div>
 
-              <div className={`experience-card${idx === 0 && isCurrent ? ' experience-card-current' : ''}`}>
-                <div className="experience-card-header">
+              <div className="exp-card-body">
+                <div className="exp-card-top">
                   <div>
-                    <div className="experience-title-row">
-                      <h3 className="experience-title">{item.title}</h3>
-                      {isCurrent && (
-                        <span className="experience-current-badge">Current</span>
-                      )}
+                    <div className="exp-title-row">
+                      <h3>{item.title}</h3>
+                      {isCurrent && <span className="exp-live">Live</span>}
                     </div>
-                    <div className="experience-org">{item.org}</div>
+                    <p className="exp-org">{item.org}</p>
                   </div>
-                  <div className="experience-date">{item.date}</div>
+                  <time className="exp-date">{item.date}</time>
                 </div>
-
-                <ul className="experience-bullets">
+                <ul className="exp-bullets">
                   {item.bullets.map((bullet) => (
                     <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
               </div>
-            </motion.div>
-            )
-          })}
-        </div>
+            </motion.article>
+          )
+        })}
       </div>
-    </section>
-  )
-}
+    </div>
+  </section>
+)
 
 export default Experience
-

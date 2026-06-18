@@ -1,0 +1,26 @@
+.section-shell {
+  position: relative;
+  padding: 5.5rem 0;
+  overflow: hidden;
+}
+
+.section-shell--alt {
+  background: var(--section-alt);
+}
+
+.section-shell-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 90%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0.35;
+}
+
+@media (max-width: 768px) {
+  .section-shell {
+    padding: 4rem 0;
+  }
+}

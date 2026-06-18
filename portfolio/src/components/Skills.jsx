@@ -1,72 +1,57 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import SectionShell from './SectionShell'
 import { portfolio } from '../data/portfolio'
 import './Skills.css'
 
 const Skills = () => (
-  <section id="skills" className="skills">
-    <div className="container">
-      <motion.div
-        className="section-header section-header--center"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="section-eyebrow">03 — Skills</span>
-        <h2>
-          Tools I <span className="gradient-text">master</span>
-        </h2>
-        <p>{portfolio.skills.subtitle}</p>
-      </motion.div>
+  <SectionShell id="skills" alt>
+    <motion.div
+      className="section-header section-header--center"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+    >
+      <span className="section-eyebrow">Skills</span>
+      <h2>
+        Tools & <span className="gradient-text">technologies</span>
+      </h2>
+      <p>{portfolio.skills.subtitle}</p>
+    </motion.div>
 
-      <div className="skills-stack">
-        {portfolio.skills.categories.map((category, catIdx) => (
-          <motion.div
-            key={category.title}
-            className="skills-block glass-card"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: catIdx * 0.1 }}
-          >
-            <h3 className="skills-block-title">{category.title}</h3>
-            <div className="skills-pills">
-              {category.skills.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  className="skill-pill"
-                  whileHover={{ scale: 1.08, y: -4 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                >
-                  <img
-                    src={skill.icon}
-                    alt=""
-                    onError={(e) => {
-                      e.target.style.display = 'none'
-                    }}
-                  />
-                  <span>{skill.name}</span>
-                  <div className="skill-pill-glow" style={{ '--skill-color': skill.color }} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      <motion.div
-        className="skills-focus glass-card"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="skills-focus-label">{portfolio.skills.summaryHeading}</span>
-        <p>{portfolio.skills.summary}</p>
-      </motion.div>
+    <div className="skills-wrap">
+      {portfolio.skills.categories.map((cat, ci) => (
+        <motion.div
+          key={cat.title}
+          className="skills-group glass-card"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: ci * 0.08 }}
+        >
+          <h3>{cat.title}</h3>
+          <div className="skills-tags">
+            {cat.skills.map((skill) => (
+              <span className="skill-tag" key={skill.name}>
+                <img src={skill.icon} alt="" onError={(e) => { e.target.style.display = 'none' }} />
+                {skill.name}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      ))}
     </div>
-  </section>
+
+    <motion.div
+      className="skills-note glass-card"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+    >
+      <strong>{portfolio.skills.summaryHeading}</strong>
+      <p>{portfolio.skills.summary}</p>
+    </motion.div>
+  </SectionShell>
 )
 
 export default Skills

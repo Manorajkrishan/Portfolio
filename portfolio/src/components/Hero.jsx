@@ -128,7 +128,7 @@ const Hero = () => {
           <div className="hero-text">
             <div className="hero-topline" aria-label="Highlights">
               <span className="hero-pill">
-                <Sparkles size={16} /> Available for opportunities
+                <Sparkles size={16} /> {portfolio.hero.statusPill}
               </span>
               <span className="hero-pill hero-pill-muted">{portfolio.person.location}</span>
             </div>

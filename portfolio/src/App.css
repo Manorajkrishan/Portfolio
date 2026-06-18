@@ -10,6 +10,7 @@
   --primary-dark: #2563eb;
   --secondary-color: #64748b;
   --accent-color: #f59e0b;
+  --accent-qa: #10b981;
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --text-light: #94a3b8;
@@ -238,11 +239,12 @@ footer {
 }
 
 .section-header h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.75rem;
+  font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 1rem;
   position: relative;
+  letter-spacing: -0.02em;
 }
 
 .dark .section-header h2 {
@@ -252,13 +254,13 @@ footer {
 .section-header h2::after {
   content: '';
   position: absolute;
-  bottom: -0.5rem;
+  bottom: -0.65rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 88px;
   height: 4px;
-  background: var(--gradient-primary);
-  border-radius: 2px;
+  background: linear-gradient(135deg, #10b981 0%, #3b82f6 55%, #8b5cf6 100%);
+  border-radius: 999px;
 }
 
 .section-header p {

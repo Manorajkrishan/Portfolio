@@ -55,7 +55,7 @@ export const portfolio = {
     paragraphs: [
       'I am a full stack engineer with hands-on experience shipping MERN, .NET, Python, and mobile applications from concept to deployment.',
       'I recently completed my AI Engineering Trainee programme at ExaltAI and joined Thrive 360 in Colombo as a QA Engineer Intern, where I combine structured quality assurance with hands-on full-stack and AI experience.',
-      'My GitHub portfolio includes 39 public repositories covering AI SaaS, crypto fraud detection, forecasting systems, firmware forensics, QA tooling, product management, POS workflows, fintech tooling, and mobile products.',
+      'My GitHub portfolio includes 39 public repositories covering AI SaaS, crypto fraud detection, React CRUD apps, forecasting systems, firmware forensics, QA tooling, Java OOP systems, and mobile products.',
       'I care about clean architecture, reliable delivery, practical product value, and technical execution that is easy to maintain and extend.',
     ],
     stats: [
@@ -418,7 +418,7 @@ export const portfolio = {
         { value: '39', label: 'Public repositories' },
         { value: '36', label: 'Original builds' },
         { value: '12', label: 'Language and stack families' },
-        { value: '24+', label: 'Featured project snapshots' },
+        { value: '30+', label: 'Featured project snapshots' },
       ],
       lanes: [
         {
@@ -427,11 +427,11 @@ export const portfolio = {
         },
         {
           title: 'Business, QA & Product Apps',
-          projects: ['Upwork QA Lab', 'Product Management', 'POS System', 'CCTV', 'CV Builder'],
+          projects: ['Upwork QA Lab', 'Product Management', 'POS System', 'Vehicle Service', 'CV Builder'],
         },
         {
-          title: 'Mobile, Backend & Embedded',
-          projects: ['Student App', 'Habit Tracker', 'TODO SQLite', 'Parcel Service', 'Temperature Sensor'],
+          title: 'Web, Mobile & Learning Builds',
+          projects: ['Social Media App', 'Colour App', 'Todo List', 'Student App', 'Habit Tracker'],
         },
       ],
     },
@@ -733,6 +733,78 @@ export const portfolio = {
         category: 'backend',
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/Thelucifer',
+      },
+      {
+        id: 25,
+        title: 'Social Media App',
+        description:
+          'React JavaScript application with full CRUD functionality for managing social-style content, built as an early full-stack learning project with responsive UI patterns.',
+        image:
+          'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=250&fit=crop',
+        technologies: ['React', 'JavaScript', 'CSS', 'HTML', 'CRUD'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/social_media',
+      },
+      {
+        id: 26,
+        title: 'Colour App',
+        description:
+          'React CRUD application for creating, reading, updating, and deleting colour records with a clean component-based interface.',
+        image:
+          'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=250&fit=crop',
+        technologies: ['React', 'JavaScript', 'CSS', 'HTML', 'CRUD'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/colour-app',
+      },
+      {
+        id: 27,
+        title: 'Todo List App',
+        description:
+          'React todo-list application demonstrating stateful UI, CRUD operations, and practical front-end component design.',
+        image:
+          'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&h=250&fit=crop',
+        technologies: ['React', 'JavaScript', 'CSS', 'HTML', 'CRUD'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/todo-list-app',
+      },
+      {
+        id: 28,
+        title: 'Online Teacher Trainer',
+        description:
+          'Web-based teacher training project built with HTML, CSS, JavaScript, and PHP for educational content and training-oriented workflows.',
+        image:
+          'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=250&fit=crop',
+        technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'Web App'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/online-teacher-trainner',
+      },
+      {
+        id: 29,
+        title: 'Vehicle Service & Fuel Station System',
+        description:
+          'Java OOP coursework project for managing vehicle service and fuel station operations with CRUD functionality and database-backed workflows.',
+        image:
+          'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=250&fit=crop',
+        technologies: ['Java', 'OOP', 'CRUD', 'JavaScript', 'CSS'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Online-vehicle-service-and-Fuel-station-management-system',
+      },
+      {
+        id: 30,
+        title: 'Python Codes for Beginners',
+        description:
+          'Collection of beginner-friendly Python exercises and sample programs for practicing fundamentals, logic building, and introductory programming concepts.',
+        image:
+          'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=250&fit=crop',
+        technologies: ['Python', 'Learning', 'Fundamentals', 'Practice'],
+        category: 'backend',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/simple-python-codes-for-beginners',
       },
     ],
   },

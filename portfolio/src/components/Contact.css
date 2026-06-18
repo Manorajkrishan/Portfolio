@@ -164,20 +164,20 @@
 
 .contact-status--success,
 .contact-status--copied {
-  background: rgba(198, 255, 0, 0.08);
-  border: 1px solid rgba(198, 255, 0, 0.25);
+  background: rgba(94, 234, 212, 0.08);
+  border: 1px solid rgba(94, 234, 212, 0.22);
   color: var(--neon-lime);
 }
 
 .contact-status--error {
-  background: rgba(255, 45, 120, 0.08);
-  border: 1px solid rgba(255, 45, 120, 0.25);
+  background: rgba(196, 161, 255, 0.08);
+  border: 1px solid rgba(196, 161, 255, 0.22);
   color: var(--neon-magenta);
 }
 
 .contact-status--submitting {
-  background: rgba(0, 232, 255, 0.08);
-  border: 1px solid rgba(0, 232, 255, 0.25);
+  background: rgba(110, 200, 255, 0.08);
+  border: 1px solid rgba(110, 200, 255, 0.2);
   color: var(--neon-cyan);
 }
 

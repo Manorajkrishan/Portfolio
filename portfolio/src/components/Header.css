@@ -10,14 +10,14 @@
 
 .header--scrolled {
   padding: 0.65rem 0;
-  background: rgba(4, 4, 10, 0.75);
+  background: rgba(15, 22, 35, 0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
 }
 
 :root:not(.dark) .header--scrolled {
-  background: rgba(248, 249, 252, 0.85);
+  background: rgba(243, 246, 251, 0.88);
 }
 
 .header-inner {
@@ -45,7 +45,7 @@
   height: 38px;
   border-radius: var(--radius-sm);
   background: var(--gradient-btn);
-  color: #04040a;
+  color: #0f172a;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 0.85rem;
@@ -130,13 +130,13 @@
   left: 0;
   right: 0;
   padding: 1.5rem 0;
-  background: rgba(4, 4, 10, 0.95);
+  background: rgba(15, 22, 35, 0.96);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
 }
 
 :root:not(.dark) .header-mobile {
-  background: rgba(248, 249, 252, 0.98);
+  background: rgba(243, 246, 251, 0.98);
 }
 
 .header-mobile .container {

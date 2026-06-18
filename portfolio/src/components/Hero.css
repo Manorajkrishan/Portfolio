@@ -27,8 +27,8 @@
   width: fit-content;
   padding: 0.45rem 1rem;
   border-radius: 999px;
-  background: rgba(0, 232, 255, 0.08);
-  border: 1px solid rgba(0, 232, 255, 0.25);
+  background: rgba(110, 200, 255, 0.1);
+  border: 1px solid rgba(110, 200, 255, 0.2);
   color: var(--neon-cyan);
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -41,7 +41,7 @@
   height: 7px;
   border-radius: 50%;
   background: var(--neon-lime);
-  box-shadow: 0 0 12px var(--neon-lime);
+  box-shadow: 0 0 10px rgba(94, 234, 212, 0.6);
   animation: pulse-dot 2s ease infinite;
 }
 
@@ -196,9 +196,9 @@
   overflow: hidden;
   border: 2px solid transparent;
   background:
-    linear-gradient(var(--bg-base), var(--bg-base)) padding-box,
+    linear-gradient(var(--bg-mid), var(--bg-mid)) padding-box,
     var(--gradient-border) border-box;
-  box-shadow: 0 0 60px rgba(0, 232, 255, 0.2);
+  box-shadow: 0 12px 48px rgba(59, 130, 246, 0.18);
 }
 
 .hero-portrait-frame img {

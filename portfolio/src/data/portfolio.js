@@ -2,7 +2,7 @@ export const portfolio = {
   person: {
     name: 'Manoraj Krishan',
     title: 'QA Engineer Intern | Full Stack Developer & AI/ML Engineer',
-    tagline: 'QA Engineer @ Thrive 360 | Full Stack & AI Builder | 37 GitHub Projects',
+    tagline: 'QA Engineer @ Thrive 360 | Full Stack & AI Builder | 39 GitHub Projects',
     location: 'Colombo, Sri Lanka · Open to remote',
     email: 'krishan142536@gmail.com',
     phoneE164: '+447456907934',
@@ -37,7 +37,7 @@ export const portfolio = {
     secondaryCta: { label: 'Contact Me', targetId: 'contact' },
     badges: ['QA Testing', 'API Testing', 'React', 'Next.js', 'Node.js', 'FastAPI', 'Python', 'Jest'],
     proofPoints: [
-      { value: '34', label: 'Original public repos' },
+      { value: '36', label: 'Original public repos' },
       { value: '12', label: 'Tech families explored' },
       { value: '2026', label: 'QA + product build focus' },
     ],
@@ -55,11 +55,11 @@ export const portfolio = {
     paragraphs: [
       'I am a full stack engineer with hands-on experience shipping MERN, .NET, Python, and mobile applications from concept to deployment.',
       'I recently completed my AI Engineering Trainee programme at ExaltAI and joined Thrive 360 in Colombo as a QA Engineer Intern, where I combine structured quality assurance with hands-on full-stack and AI experience.',
-      'My GitHub portfolio includes 37 public repositories covering AI SaaS, forecasting systems, firmware forensics, product management, POS workflows, fintech tooling, and mobile products.',
+      'My GitHub portfolio includes 39 public repositories covering AI SaaS, crypto fraud detection, forecasting systems, firmware forensics, QA tooling, product management, POS workflows, fintech tooling, and mobile products.',
       'I care about clean architecture, reliable delivery, practical product value, and technical execution that is easy to maintain and extend.',
     ],
     stats: [
-      { value: '37', label: 'Public GitHub Repositories' },
+      { value: '39', label: 'Public GitHub Repositories' },
       { value: '15+', label: 'End-to-End Apps Delivered' },
       { value: '95%', label: 'Best ML Detection Accuracy' },
     ],
@@ -108,7 +108,7 @@ export const portfolio = {
         org: 'GitHub Projects / Personal Labs',
         date: '2025 - Present',
         bullets: [
-          'Built and maintained 37 public repositories spanning AI/ML, full-stack SaaS, security research, business tools, and mobile applications.',
+          'Built and maintained 39 public repositories spanning AI/ML, full-stack SaaS, security research, QA tooling, business tools, and mobile applications.',
           'Delivered recent systems including RegTech, TermoGrid, Smart Function Recommender, NeuroSync, Product Management, POS System, and WheelWorth.',
           'Focused on practical engineering outcomes: clear product workflows, robust architecture, maintainable code, and production-oriented implementation quality.',
         ],
@@ -406,7 +406,7 @@ export const portfolio = {
   projects: {
     subtitle: 'Selected highlights from my latest public repositories and product builds',
     allProjectsCta: {
-      label: 'View all 37 repositories on GitHub',
+      label: 'View all 39 repositories on GitHub',
       url: 'https://github.com/Manorajkrishan?tab=repositories',
     },
     repoInsights: {
@@ -415,19 +415,19 @@ export const portfolio = {
       description:
         'I reviewed the public GitHub profile and grouped the work into product lanes so visitors can quickly understand the range behind the featured projects.',
       stats: [
-        { value: '37', label: 'Public repositories' },
-        { value: '34', label: 'Original builds' },
+        { value: '39', label: 'Public repositories' },
+        { value: '36', label: 'Original builds' },
         { value: '12', label: 'Language and stack families' },
-        { value: '20+', label: 'Featured project snapshots' },
+        { value: '24+', label: 'Featured project snapshots' },
       ],
       lanes: [
         {
-          title: 'AI, Data & Research',
-          projects: ['RegTech', 'TermoGrid', 'NeuroSync', 'UAV Forensics', 'WheelWorth'],
+          title: 'AI, Data & Security',
+          projects: ['Crypto Scam Detector', 'RegTech', 'TermoGrid', 'NeuroSync', 'UAV Forensics'],
         },
         {
-          title: 'Business & Product Apps',
-          projects: ['Product Management', 'POS System', 'CCTV', 'Hotel Booking', 'CV Builder'],
+          title: 'Business, QA & Product Apps',
+          projects: ['Upwork QA Lab', 'Product Management', 'POS System', 'CCTV', 'CV Builder'],
         },
         {
           title: 'Mobile, Backend & Embedded',
@@ -440,11 +440,48 @@ export const portfolio = {
       { key: 'research', label: 'Research' },
       { key: 'fullstack', label: 'Full Stack' },
       { key: 'ai', label: 'AI/ML' },
+      { key: 'qa', label: 'QA & Testing' },
       { key: 'mobile', label: 'Mobile' },
       { key: 'business', label: 'Business Apps' },
       { key: 'backend', label: 'Backend' },
     ],
     items: [
+      {
+        id: 24,
+        title: 'Crypto Scam Detection Platform',
+        description:
+          'Full-stack crypto risk analysis platform that scores wallets, tokens, and smart contracts using Etherscan data, a 2,360-address rug-pull database, Chainabuse lookups, rule-based checks, and a Python Random Forest model (95.1% accuracy, AUC 0.987) with PDF reports.',
+        image:
+          'https://images.unsplash.com/photo-1639768661051-908e9b597fee?w=400&h=250&fit=crop',
+        technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'Python', 'scikit-learn', 'Etherscan API'],
+        category: 'ai',
+        liveUrl: 'https://frontend-phi-three-83.vercel.app',
+        githubUrl: 'https://github.com/Manorajkrishan/crypto-scam-detector-',
+      },
+      {
+        id: 23,
+        title: 'Upwork QA Testing Lab',
+        description:
+          'QA portfolio repository for structured freelance and product testing workflows — covering manual test scenarios, bug reporting patterns, regression checklists, and validation practices developed through Upwork and professional QA work.',
+        image:
+          'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=250&fit=crop',
+        technologies: ['Manual Testing', 'Test Cases', 'Bug Tracking', 'Regression Testing', 'QA Workflows'],
+        category: 'qa',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/UPwork-tester-',
+      },
+      {
+        id: 20,
+        title: 'Interactive Portfolio Website',
+        description:
+          'This React + Vite portfolio with luminous editorial UI, dark mode, Framer Motion animations, FormSubmit contact delivery, project filtering, and a data-driven content architecture.',
+        image:
+          'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
+        technologies: ['React', 'Vite', 'Framer Motion', 'CSS', 'FormSubmit', 'Data-driven UI'],
+        category: 'fullstack',
+        liveUrl: null,
+        githubUrl: 'https://github.com/Manorajkrishan/Portfolio',
+      },
       {
         id: 1,
         title: 'RegTech - AI-Powered ESG Compliance Platform',
@@ -492,18 +529,6 @@ export const portfolio = {
         category: 'research',
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/NeuroSync',
-      },
-      {
-        id: 20,
-        title: 'Interactive Portfolio Website',
-        description:
-          'This React + Vite portfolio built here with dark mode, animated sections, data-driven content, project filtering, and a refreshed unique project-lab UI.',
-        image:
-          'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
-        technologies: ['React', 'Vite', 'GSAP', 'Framer Motion', 'CSS', 'Data-driven UI'],
-        category: 'fullstack',
-        liveUrl: null,
-        githubUrl: 'https://github.com/Manorajkrishan/Portfolio',
       },
       {
         id: 5,

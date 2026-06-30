@@ -2,7 +2,7 @@ export const portfolio = {
   person: {
     name: 'Manoraj Krishan',
     title: 'QA Engineer Intern | Full Stack Developer & AI/ML Engineer',
-    tagline: 'QA Engineer @ Thrive 360 | Full Stack & AI Builder | 39 GitHub Projects',
+    tagline: 'QA Engineer @ Thrive 360 · Full Stack Developer · AI/ML Engineer',
     location: 'Colombo, Sri Lanka · Open to remote',
     email: 'krishan142536@gmail.com',
     phoneE164: '+447456907934',
@@ -37,9 +37,9 @@ export const portfolio = {
     secondaryCta: { label: 'Contact Me', targetId: 'contact' },
     badges: ['QA Testing', 'API Testing', 'React', 'Next.js', 'Node.js', 'FastAPI', 'Python', 'Jest'],
     proofPoints: [
-      { value: '36', label: 'Original public repos' },
-      { value: '12', label: 'Tech families explored' },
-      { value: '2026', label: 'QA + product build focus' },
+      { value: '15+', label: 'End-to-end products delivered' },
+      { value: '12', label: 'Technology domains' },
+      { value: '95%', label: 'Peak ML detection accuracy' },
     ],
     orbitCards: [
       { value: 'QA', label: 'Testing, validation, quality' },
@@ -55,12 +55,12 @@ export const portfolio = {
     paragraphs: [
       'I am a full stack engineer with hands-on experience shipping MERN, .NET, Python, and mobile applications from concept to deployment.',
       'I recently completed my AI Engineering Trainee programme at ExaltAI and joined Thrive 360 in Colombo as a QA Engineer Intern, where I combine structured quality assurance with hands-on full-stack and AI experience.',
-      'My GitHub portfolio includes 39 public repositories covering AI SaaS, crypto fraud detection, React CRUD apps, forecasting systems, firmware forensics, QA tooling, Java OOP systems, and mobile products.',
+      'I build across AI SaaS, fraud detection, forecasting systems, firmware forensics, QA tooling, and mobile products — with an emphasis on architecture that scales and code that teams can maintain.',
       'I care about clean architecture, reliable delivery, practical product value, and technical execution that is easy to maintain and extend.',
     ],
     stats: [
-      { value: '39', label: 'Public GitHub Repositories' },
       { value: '15+', label: 'End-to-End Apps Delivered' },
+      { value: '5+', label: 'Product verticals' },
       { value: '95%', label: 'Best ML Detection Accuracy' },
     ],
     features: [
@@ -105,10 +105,10 @@ export const portfolio = {
       {
         type: 'work',
         title: 'Independent Full Stack & AI Builder',
-        org: 'GitHub Projects / Personal Labs',
+        org: 'Personal Labs',
         date: '2025 - Present',
         bullets: [
-          'Built and maintained 39 public repositories spanning AI/ML, full-stack SaaS, security research, QA tooling, business tools, and mobile applications.',
+          'Design and ship AI/ML platforms, full-stack SaaS products, security research tools, QA utilities, business applications, and mobile experiences.',
           'Delivered recent systems including RegTech, TermoGrid, Smart Function Recommender, NeuroSync, Product Management, POS System, and WheelWorth.',
           'Focused on practical engineering outcomes: clear product workflows, robust architecture, maintainable code, and production-oriented implementation quality.',
         ],
@@ -404,19 +404,19 @@ export const portfolio = {
   },
 
   projects: {
-    subtitle: 'Selected highlights from my latest public repositories and product builds',
+    subtitle: 'Selected highlights from products and systems I have designed, built, and shipped',
     allProjectsCta: {
-      label: 'View all 39 repositories on GitHub',
+      label: 'Explore more work on GitHub',
       url: 'https://github.com/Manorajkrishan?tab=repositories',
     },
     repoInsights: {
-      eyebrow: 'GitHub project lab',
-      title: 'A portfolio shaped from full-stack products, AI experiments, mobile apps, and real business workflows.',
+      eyebrow: 'Product portfolio',
+      title: 'A body of work spanning full-stack products, AI systems, mobile apps, and real business workflows.',
       description:
-        'I reviewed the public GitHub profile and grouped the work into product lanes so visitors can quickly understand the range behind the featured projects.',
+        'Work is organised into product lanes so visitors can quickly understand the breadth and depth behind the featured projects.',
       stats: [
-        { value: '39', label: 'Public repositories' },
-        { value: '36', label: 'Original builds' },
+        { value: '15+', label: 'Products delivered' },
+        { value: '5+', label: 'Industry verticals' },
         { value: '12', label: 'Language and stack families' },
         { value: '30+', label: 'Featured project snapshots' },
       ],

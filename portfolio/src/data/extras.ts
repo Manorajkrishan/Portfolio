@@ -10,7 +10,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      'His GitHub portfolio shows consistent execution across AI SaaS, forecasting systems, and production-grade web applications.',
+      'Consistent execution across AI SaaS, forecasting systems, and production-grade web applications — with clear product thinking behind every build.',
     author: 'Mentor',
     role: 'AI Programme',
     company: 'ExaltAI',
@@ -34,10 +34,10 @@ export const aiPipelineSteps = [
 ]
 
 export const globalStats = [
-  { value: 39, suffix: '', label: 'Projects Completed' },
-  { value: 36, suffix: '', label: 'GitHub Repositories' },
+  { value: 15, suffix: '+', label: 'Products Delivered' },
   { value: 12, suffix: '+', label: 'Technologies' },
   { value: 3, suffix: '+', label: 'Years of Experience' },
   { value: 6, suffix: '', label: 'Research Projects' },
   { value: 6, suffix: '', label: 'Certifications' },
+  { value: 5, suffix: '+', label: 'Product Verticals' },
 ]

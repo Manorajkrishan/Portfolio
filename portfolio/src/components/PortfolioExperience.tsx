@@ -2,9 +2,9 @@
 
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { AmbientBackground } from '@/components/background/AmbientBackground'
-import { CustomCursor } from '@/components/layout/CustomCursor'
+import { GridBackground } from '@/components/background/GridBackground'
 import { Footer } from '@/components/layout/Footer'
+import { Marquee } from '@/components/layout/Marquee'
 import { Navbar } from '@/components/layout/Navbar'
 import { PageLoader } from '@/components/layout/PageLoader'
 import { SmoothScrollProvider } from '@/components/layout/SmoothScroll'
@@ -24,11 +24,11 @@ export function PortfolioExperience() {
   return (
     <SmoothScrollProvider>
       <AnimatePresence>{loading && <PageLoader onComplete={() => setLoading(false)} />}</AnimatePresence>
-      {!loading && <CustomCursor />}
-      <AmbientBackground />
+      <GridBackground />
       <Navbar />
       <main>
         <HeroSection />
+        <Marquee />
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />

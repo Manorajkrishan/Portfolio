@@ -1,22 +1,24 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { DM_Sans, Syne } from 'next/font/google'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const syne = Syne({
+  variable: '--font-syne',
   subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const dmSans = DM_Sans({
+  variable: '--font-dm-sans',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
   title: 'Manoraj Krishan | Full Stack Developer & AI Engineer',
   description:
-    'Premium immersive portfolio showcasing QA engineering, full-stack development, AI/ML systems, and high-performance product experiences.',
+    'Portfolio of Manoraj Krishan — QA engineer, full-stack developer, and AI/ML engineer building reliable software products.',
   keywords: [
     'Manoraj Krishan',
     'Full Stack Developer',
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Manoraj Krishan | Full Stack Developer & AI Engineer',
     description:
-      'Cinematic portfolio experience featuring AI systems, full-stack products, and premium motion design.',
+      'Engineering portfolio spanning QA, full-stack products, and applied AI systems.',
     type: 'website',
   },
 }
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${syne.variable} ${dmSans.variable} antialiased`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

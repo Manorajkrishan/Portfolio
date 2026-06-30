@@ -1,6 +1,6 @@
-# Portfolio (React + Vite)
+# Next-Generation Portfolio
 
-Personal portfolio built with React + Vite, including dark mode, animations, and a data-driven content setup.
+Premium cinematic portfolio built with Next.js, TypeScript, Tailwind CSS, Framer Motion, GSAP, Three.js, and Lenis smooth scrolling.
 
 ## Quick start
 
@@ -9,17 +9,25 @@ npm install
 npm run dev
 ```
 
-## Update your content
+## Update content
 
-- **Main content file**: `src/data/portfolio.js`
-  - Update your name, links, About text, Experience entries, Skills, and Projects there.
-- **Profile image**: `public/WhatsApp Image 2025-06-22 at 19.05.29_708ba2a7.jpg`
-- **Resume/CV**: add a PDF into `public/` and set `resumeUrl` in `src/data/portfolio.js`
+- Main content: `src/data/portfolio.js`
+- Extended sections (testimonials, stats, AI pipeline): `src/data/extras.ts`
+- Profile image: add to `public/` and update `person.image.src` in the portfolio data file
 
-## Build / lint
+## Build
 
 ```bash
 npm run lint
 npm run build
+npm start
 ```
 
+## Stack
+
+- Next.js App Router + TypeScript
+- Tailwind CSS v4
+- Framer Motion + GSAP-ready animation primitives
+- React Three Fiber + Drei (hero 3D scene)
+- Lenis smooth scroll
+- next-themes (dark/light)

@@ -1,0 +1,8 @@
+{
+  "name": "portfolio-root",
+  "private": true,
+  "scripts": {
+    "build": "npm run build --prefix portfolio",
+    "vercel-build": "npm run build --prefix portfolio"
+  }
+}

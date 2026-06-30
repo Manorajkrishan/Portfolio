@@ -1,6 +1,3 @@
 {
-  "installCommand": "cd portfolio && npm install",
-  "buildCommand": "cd portfolio && npm run build",
-  "devCommand": "cd portfolio && npm run dev",
   "framework": "nextjs"
 }

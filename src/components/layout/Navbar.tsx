@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
@@ -9,11 +10,19 @@ import { cn } from '@/lib/utils'
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const activeId = useActiveSection(portfolio.nav.map((item) => item.id))
 
   useEffect(() => setMounted(true), [])
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const scrollTo = (id: string) => {
     setOpen(false)
@@ -22,22 +31,27 @@ export function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b-2 border-border bg-background/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <button onClick={() => scrollTo('hero')} className="text-display text-lg font-extrabold tracking-tight">
-            MK<span className="text-accent">.</span>
+      <header
+        className={cn(
+          'fixed inset-x-0 top-0 z-50 transition-all duration-300',
+          scrolled ? 'border-b border-border bg-background/85 py-3 shadow-sm backdrop-blur-xl' : 'bg-transparent py-5'
+        )}
+      >
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4">
+          <button onClick={() => scrollTo('hero')} className="text-display text-lg font-bold">
+            Manoraj<span className="text-gradient">.</span>
           </button>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1 backdrop-blur md:flex">
             {portfolio.nav.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
                 className={cn(
-                  'border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] transition',
+                  'rounded-full px-4 py-2 text-sm font-medium transition',
                   activeId === item.id
-                    ? 'border-border bg-primary text-primary-foreground shadow-[3px_3px_0_var(--shadow-color)]'
-                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                    ? 'bg-gradient-to-r from-indigo-500 to-teal-400 text-white shadow-md'
+                    : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {item.label}
@@ -50,39 +64,41 @@ export function Navbar() {
               <button
                 aria-label="Toggle theme"
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="border-2 border-border bg-card p-2 shadow-[3px_3px_0_var(--shadow-color)]"
+                className="rounded-full border border-border bg-card p-2.5 text-muted-foreground transition hover:text-foreground"
               >
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
               </button>
             )}
             <button
-              className="border-2 border-border bg-card p-2 shadow-[3px_3px_0_var(--shadow-color)] lg:hidden"
-              onClick={() => setOpen((value) => !value)}
+              className="rounded-full border border-border bg-card p-2.5 md:hidden"
+              onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
             >
-              {open ? <X size={16} /> : <Menu size={16} />}
+              {open ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
       </header>
 
       {open && (
-        <div className="fixed inset-x-0 top-[65px] z-40 border-b-2 border-border bg-background p-4 lg:hidden">
-          <div className="flex flex-col gap-2">
-            {portfolio.nav.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className={cn(
-                  'border-2 px-4 py-3 text-left text-sm font-semibold uppercase tracking-[0.14em]',
-                  activeId === item.id ? 'border-border bg-primary text-primary-foreground' : 'border-border bg-card'
-                )}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="fixed inset-x-4 top-20 z-40 rounded-2xl border border-border bg-card p-3 shadow-xl md:hidden"
+        >
+          {portfolio.nav.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollTo(item.id)}
+              className={cn(
+                'block w-full rounded-xl px-4 py-3 text-left text-sm font-medium',
+                activeId === item.id ? 'bg-muted text-foreground' : 'text-muted-foreground'
+              )}
+            >
+              {item.label}
+            </button>
+          ))}
+        </motion.div>
       )}
     </>
   )

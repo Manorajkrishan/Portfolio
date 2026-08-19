@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
-import { DM_Sans, Syne } from 'next/font/google'
+import { Plus_Jakarta_Sans, Sora } from 'next/font/google'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import './globals.css'
 
-const syne = Syne({
-  variable: '--font-syne',
+const sora = Sora({
+  variable: '--font-sora',
   subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
+  weight: ['500', '600', '700'],
 })
 
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
+const jakarta = Plus_Jakarta_Sans({
+  variable: '--font-jakarta',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
 })
@@ -19,26 +19,12 @@ export const metadata: Metadata = {
   title: 'Manoraj Krishan | Full Stack Developer & AI Engineer',
   description:
     'Portfolio of Manoraj Krishan — QA engineer, full-stack developer, and AI/ML engineer building reliable software products.',
-  keywords: [
-    'Manoraj Krishan',
-    'Full Stack Developer',
-    'AI Engineer',
-    'QA Engineer',
-    'Next.js',
-    'Portfolio',
-  ],
-  openGraph: {
-    title: 'Manoraj Krishan | Full Stack Developer & AI Engineer',
-    description:
-      'Engineering portfolio spanning QA, full-stack products, and applied AI systems.',
-    type: 'website',
-  },
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${syne.variable} ${dmSans.variable} antialiased`}>
+      <body className={`${sora.variable} ${jakarta.variable} antialiased`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

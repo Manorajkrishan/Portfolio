@@ -1,5 +1,6 @@
 'use client'
 
+import { Briefcase } from 'lucide-react'
 import { Reveal } from '@/components/animations/Reveal'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { portfolio } from '@/data'
@@ -10,29 +11,33 @@ export function ExperienceSection() {
   return (
     <section id="experience" className="section-shell mx-auto max-w-6xl">
       <Reveal>
-        <SectionHeader index="05" label="Experience" title="Where I've built and shipped" description={experience.subtitle} />
+        <SectionHeader title="Work Experience" subtitle={experience.subtitle} />
       </Reveal>
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {experience.items.slice(0, 6).map((item, index) => (
           <Reveal key={`${item.title}-${item.date}`} delay={index * 0.04}>
-            <article className="studio-card grid gap-4 border-l-8 border-l-primary p-6 md:grid-cols-[220px_1fr]">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">{item.type}</p>
-                <p className="mt-2 text-sm font-semibold text-muted-foreground">{item.date}</p>
+            <article className="glass-card rounded-2xl p-6 transition hover:-translate-y-1">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-teal-400/20 text-primary">
+                    <Briefcase size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-display text-lg font-bold">{item.title}</h3>
+                    <p className="mt-1 font-semibold text-primary">{item.org}</p>
+                  </div>
+                </div>
+                <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold">{item.date}</span>
               </div>
-              <div>
-                <h3 className="text-display text-xl font-bold">{item.title}</h3>
-                <p className="mt-1 text-sm font-semibold">{item.org}</p>
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-3">
-                      <span className="mt-2 h-2 w-2 shrink-0 bg-accent" />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                {item.bullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-400" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
             </article>
           </Reveal>
         ))}

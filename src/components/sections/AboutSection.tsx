@@ -27,6 +27,15 @@ export function AboutSection() {
           ))}
         </StaggerContainer>
 
+        <div className="mt-8">
+          <p className="text-sm font-bold uppercase tracking-wider text-primary">Soft Skills</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {portfolio.softSkills.map((skill) => (
+              <span key={skill} className="chip">{skill}</span>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {about.stats.map((stat, index) => {
             const numeric = Number.parseInt(stat.value, 10)

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check, Copy, Github, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react'
+import { Check, Copy, Github, Linkedin, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react'
 import { FormEvent, useState } from 'react'
 import { Reveal } from '@/components/animations/Reveal'
 import { SectionHeader } from '@/components/ui/SectionHeader'
@@ -11,6 +11,8 @@ export function ContactSection() {
   const { person, contact } = portfolio
   const [copied, setCopied] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(person.email)
@@ -18,9 +20,35 @@ export function ContactSection() {
     setTimeout(() => setCopied(false), 1800)
   }
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSubmitted(true)
+    setSending(true)
+    setError('')
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(person.email)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          message: formData.get('message'),
+          _subject: 'New portfolio message',
+          _captcha: 'false',
+        }),
+      })
+
+      if (!response.ok) throw new Error('Failed to send')
+      setSubmitted(true)
+      form.reset()
+    } catch {
+      setError('Something went wrong. Please email me directly.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -68,7 +96,7 @@ export function ContactSection() {
         <Reveal delay={0.05} className="lg:col-span-3">
           <form onSubmit={onSubmit} className="glass-card rounded-3xl p-6 md:p-8">
             <p className="mb-6 text-sm text-muted-foreground">
-              Messages sent through this form can be wired to your email service.
+              Messages sent through this form are delivered directly to my email inbox.
             </p>
 
             {submitted ? (
@@ -83,18 +111,20 @@ export function ContactSection() {
               <div className="space-y-4">
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium">Name</span>
-                  <input required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
+                  <input name="name" required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
                 </label>
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium">Email</span>
-                  <input type="email" required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
+                  <input name="email" type="email" required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
                 </label>
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium">Message</span>
-                  <textarea required rows={5} className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
+                  <textarea name="message" required rows={5} className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
                 </label>
-                <button type="submit" className="btn-primary w-full sm:w-auto">
-                  <Send size={16} /> Send Message
+                {error && <p className="text-sm text-red-500">{error}</p>}
+                <button type="submit" disabled={sending} className="btn-primary w-full sm:w-auto disabled:opacity-60">
+                  {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                  {sending ? 'Sending...' : 'Send Message'}
                 </button>
               </div>
             )}

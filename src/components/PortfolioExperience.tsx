@@ -6,6 +6,7 @@ import { GradientBackground } from '@/components/background/GradientBackground'
 import { Footer } from '@/components/layout/Footer'
 import { Navbar } from '@/components/layout/Navbar'
 import { PageLoader, TopProgressBar } from '@/components/layout/PageLoader'
+import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import { SmoothScrollProvider } from '@/components/layout/SmoothScroll'
 import { AboutSection } from '@/components/sections/AboutSection'
 import { AchievementsSection } from '@/components/sections/AchievementsSection'
@@ -14,6 +15,7 @@ import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 
 export function PortfolioExperience() {
   const [loading, setLoading] = useState(true)
@@ -28,12 +30,14 @@ export function PortfolioExperience() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <ProjectsSection />
         <ExperienceSection />
+        <ProjectsSection />
         <AchievementsSection />
+        <TestimonialsSection />
         <ContactSection />
       </main>
       <Footer />
+      <ScrollToTop />
     </SmoothScrollProvider>
   )
 }

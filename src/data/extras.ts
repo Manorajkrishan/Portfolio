@@ -33,6 +33,15 @@ export const aiPipelineSteps = [
   { label: 'Monitoring', detail: 'Drift detection & feedback loops' },
 ]
 
+export const softSkills = [
+  'Time Management',
+  'Problem Solving',
+  'Team Collaboration',
+  'Communication',
+  'Creativity',
+  'Attention to Detail',
+]
+
 export const globalStats = [
   { value: 15, suffix: '+', label: 'Products Delivered' },
   { value: 12, suffix: '+', label: 'Technologies' },

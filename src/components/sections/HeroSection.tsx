@@ -39,6 +39,12 @@ export function HeroSection() {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">{hero.description}</p>
           </Reveal>
 
+          <Reveal delay={0.18} className="mt-6 flex flex-wrap gap-2">
+            {hero.badges.map((badge) => (
+              <span key={badge} className="chip text-xs">{badge}</span>
+            ))}
+          </Reveal>
+
           <Reveal delay={0.2} className="mt-8 flex flex-wrap gap-3">
             <button onClick={() => scrollTo(hero.primaryCta.targetId)} className="btn-primary">
               {hero.primaryCta.label} <ArrowRight size={16} />

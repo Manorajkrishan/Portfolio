@@ -5,13 +5,12 @@ import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Reveal } from '@/components/animations/Reveal'
 import { portfolio } from '@/data'
+import { scrollToSection } from '@/lib/scroll'
 
 export function HeroSection() {
   const { person, hero } = portfolio
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const scrollTo = (id: string) => scrollToSection(id)
 
   return (
     <section id="hero" className="section-shell mx-auto flex min-h-screen max-w-6xl flex-col justify-center pt-24">

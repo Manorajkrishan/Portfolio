@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -12,10 +12,12 @@ interface RevealProps {
 }
 
 export function Reveal({ children, className, delay = 0, y = 32 }: RevealProps) {
+  const reducedMotion = useReducedMotion()
+
   return (
     <motion.div
       className={cn(className)}
-      initial={{ opacity: 0, y: y }}
+      initial={reducedMotion ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
@@ -32,10 +34,12 @@ export function StaggerContainer({
   children: ReactNode
   className?: string
 }) {
+  const reducedMotion = useReducedMotion()
+
   return (
     <motion.div
       className={className}
-      initial="hidden"
+      initial={reducedMotion ? false : 'hidden'}
       whileInView="show"
       viewport={{ once: true, margin: '-60px' }}
       variants={{

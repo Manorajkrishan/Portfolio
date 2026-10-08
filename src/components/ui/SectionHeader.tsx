@@ -13,7 +13,7 @@ export function SectionHeader({ title, subtitle, className, children }: SectionH
     <div className={cn('mx-auto mb-12 max-w-2xl text-center', className)}>
       <h2 className="text-display text-3xl font-bold tracking-tight md:text-4xl">{title}</h2>
       <p className="mt-3 text-muted-foreground">{subtitle}</p>
-      <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-indigo-500 to-teal-400" />
+      <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-3)]" />
       {children}
     </div>
   )

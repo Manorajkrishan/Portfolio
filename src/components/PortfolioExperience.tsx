@@ -1,11 +1,9 @@
 'use client'
 
-import { AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
 import { GradientBackground } from '@/components/background/GradientBackground'
 import { Footer } from '@/components/layout/Footer'
 import { Navbar } from '@/components/layout/Navbar'
-import { PageLoader, TopProgressBar } from '@/components/layout/PageLoader'
+import { TopProgressBar } from '@/components/layout/PageLoader'
 import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import { SmoothScrollProvider } from '@/components/layout/SmoothScroll'
 import { AboutSection } from '@/components/sections/AboutSection'
@@ -18,20 +16,18 @@ import { SkillsSection } from '@/components/sections/SkillsSection'
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 
 export function PortfolioExperience() {
-  const [loading, setLoading] = useState(true)
-
   return (
     <SmoothScrollProvider>
-      <AnimatePresence>{loading && <PageLoader onComplete={() => setLoading(false)} />}</AnimatePresence>
-      {!loading && <TopProgressBar />}
+      <a href="#main-content" className="skip-link btn-primary">Skip to content</a>
+      <TopProgressBar />
       <GradientBackground />
       <Navbar />
-      <main>
+      <main id="main-content">
         <HeroSection />
+        <ProjectsSection />
         <AboutSection />
         <SkillsSection />
         <ExperienceSection />
-        <ProjectsSection />
         <AchievementsSection />
         <TestimonialsSection />
         <ContactSection />

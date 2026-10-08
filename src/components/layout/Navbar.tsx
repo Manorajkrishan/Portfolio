@@ -3,17 +3,22 @@
 import { motion } from 'framer-motion'
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { portfolio } from '@/data'
 import { useActiveSection } from '@/hooks/useActiveSection'
+import { scrollToSection } from '@/lib/scroll'
 import { cn } from '@/lib/utils'
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
-  const activeId = useActiveSection(portfolio.nav.map((item) => item.id))
+  const { resolvedTheme, setTheme } = useTheme()
+  const navigationIds = useMemo(
+    () => ['hero', ...portfolio.nav.map((item) => item.id)],
+    []
+  )
+  const activeId = useActiveSection(navigationIds)
 
   useEffect(() => setMounted(true), [])
 
@@ -26,7 +31,7 @@ export function Navbar() {
 
   const scrollTo = (id: string) => {
     setOpen(false)
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    scrollToSection(id)
   }
 
   return (
@@ -42,15 +47,16 @@ export function Navbar() {
             Manoraj<span className="text-gradient">.</span>
           </button>
 
-          <nav className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1 backdrop-blur md:flex">
+          <nav aria-label="Main navigation" className="hidden items-center gap-1 rounded-full border border-border bg-card/80 p-1 backdrop-blur md:flex">
             {portfolio.nav.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
+                aria-current={activeId === item.id ? 'location' : undefined}
                 className={cn(
                   'rounded-full px-4 py-2 text-sm font-medium transition',
                   activeId === item.id
-                    ? 'bg-gradient-to-r from-indigo-500 to-teal-400 text-white shadow-md'
+                    ? 'bg-primary text-primary-foreground shadow-md'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
               >
@@ -63,16 +69,18 @@ export function Navbar() {
             {mounted && (
               <button
                 aria-label="Toggle theme"
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                 className="rounded-full border border-border bg-card p-2.5 text-muted-foreground transition hover:text-foreground"
               >
-                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                {resolvedTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
               </button>
             )}
             <button
               className="rounded-full border border-border bg-card p-2.5 md:hidden"
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
             >
               {open ? <X size={18} /> : <Menu size={18} />}
             </button>
@@ -81,7 +89,9 @@ export function Navbar() {
       </header>
 
       {open && (
-        <motion.div
+        <motion.nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           className="fixed inset-x-4 top-20 z-40 rounded-2xl border border-border bg-card p-3 shadow-xl md:hidden"
@@ -90,15 +100,16 @@ export function Navbar() {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
+              aria-current={activeId === item.id ? 'location' : undefined}
               className={cn(
                 'block w-full rounded-xl px-4 py-3 text-left text-sm font-medium',
-                activeId === item.id ? 'bg-muted text-foreground' : 'text-muted-foreground'
+                activeId === item.id ? 'bg-primary text-primary-foreground' : 'text-muted-foreground'
               )}
             >
               {item.label}
             </button>
           ))}
-        </motion.div>
+        </motion.nav>
       )}
     </>
   )

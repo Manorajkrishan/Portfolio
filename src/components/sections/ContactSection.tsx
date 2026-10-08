@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check, Copy, Github, Linkedin, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react'
+import { Check, Copy, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import { FormEvent, useState } from 'react'
 import { Reveal } from '@/components/animations/Reveal'
 import { SectionHeader } from '@/components/ui/SectionHeader'
@@ -11,44 +11,26 @@ export function ContactSection() {
   const { person, contact } = portfolio
   const [copied, setCopied] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
-  const [error, setError] = useState('')
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText(person.email)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1800)
+    try {
+      await navigator.clipboard.writeText(person.email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch {
+      window.location.href = `mailto:${person.email}`
+    }
   }
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSending(true)
-    setError('')
-
-    const form = event.currentTarget
-    const formData = new FormData(form)
-
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(person.email)}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: formData.get('name'),
-          email: formData.get('email'),
-          message: formData.get('message'),
-          _subject: 'New portfolio message',
-          _captcha: 'false',
-        }),
-      })
-
-      if (!response.ok) throw new Error('Failed to send')
-      setSubmitted(true)
-      form.reset()
-    } catch {
-      setError('Something went wrong. Please email me directly.')
-    } finally {
-      setSending(false)
-    }
+    const data = new FormData(event.currentTarget)
+    const subject = encodeURIComponent(`Portfolio enquiry from ${data.get('name')}`)
+    const body = encodeURIComponent(
+      `${data.get('message')}\n\nFrom: ${data.get('name')}\nEmail: ${data.get('email')}`
+    )
+    window.location.href = `mailto:${person.email}?subject=${subject}&body=${body}`
+    setSubmitted(true)
   }
 
   return (
@@ -83,10 +65,10 @@ export function ContactSection() {
 
             <p className="mt-8 text-sm font-semibold">Connect with me:</p>
             <div className="mt-3 flex gap-3">
-              <a href={person.links.github} target="_blank" rel="noreferrer" className="btn-outline !px-3">
+              <a href={person.links.github} aria-label="GitHub profile" target="_blank" rel="noreferrer" className="btn-outline !px-3">
                 <Github size={18} />
               </a>
-              <a href={person.links.linkedin} target="_blank" rel="noreferrer" className="btn-outline !px-3">
+              <a href={person.links.linkedin} aria-label="LinkedIn profile" target="_blank" rel="noreferrer" className="btn-outline !px-3">
                 <Linkedin size={18} />
               </a>
             </div>
@@ -96,36 +78,38 @@ export function ContactSection() {
         <Reveal delay={0.05} className="lg:col-span-3">
           <form onSubmit={onSubmit} className="glass-card rounded-3xl p-6 md:p-8">
             <p className="mb-6 text-sm text-muted-foreground">
-              Messages sent through this form are delivered directly to my email inbox.
+              Opens your email app with a draft. You send the message from there — nothing is sent automatically from this site.
             </p>
 
             {submitted ? (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex min-h-[280px] flex-col items-center justify-center text-center">
-                <div className="rounded-full bg-teal-400/15 p-4 text-teal-500">
+                <div className="rounded-full bg-primary/15 p-4 text-primary">
                   <Check size={28} />
                 </div>
-                <h3 className="text-display mt-4 text-xl font-bold">Message sent!</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Thanks for reaching out — I&apos;ll get back to you soon.</p>
+                <h3 className="text-display mt-4 text-xl font-bold">Email draft prepared</h3>
+                <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+                  Your email app should open with your draft. Send it there to complete your enquiry.
+                </p>
+                <a href={`mailto:${person.email}`} className="btn-outline mt-5">Email directly</a>
+                <button type="button" onClick={() => setSubmitted(false)} className="mt-4 text-sm underline">
+                  Edit your draft
+                </button>
               </motion.div>
             ) : (
               <div className="space-y-4">
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium">Name</span>
-                  <input name="name" required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
+                  <input name="name" autoComplete="name" required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
                 </label>
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium">Email</span>
-                  <input name="email" type="email" required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
+                  <input name="email" autoComplete="email" type="email" required className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
                 </label>
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium">Message</span>
                   <textarea name="message" required rows={5} className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none focus:border-primary" />
                 </label>
-                {error && <p className="text-sm text-red-500">{error}</p>}
-                <button type="submit" disabled={sending} className="btn-primary w-full sm:w-auto disabled:opacity-60">
-                  {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
-                  {sending ? 'Sending...' : 'Send Message'}
-                </button>
+                <button type="submit" className="btn-primary w-full sm:w-auto">Prepare Email</button>
               </div>
             )}
           </form>

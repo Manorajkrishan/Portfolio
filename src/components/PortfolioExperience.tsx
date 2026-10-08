@@ -2,15 +2,14 @@
 
 import { AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { GridBackground } from '@/components/background/GridBackground'
+import { GradientBackground } from '@/components/background/GradientBackground'
 import { Footer } from '@/components/layout/Footer'
-import { Marquee } from '@/components/layout/Marquee'
 import { Navbar } from '@/components/layout/Navbar'
-import { PageLoader } from '@/components/layout/PageLoader'
+import { PageLoader, TopProgressBar } from '@/components/layout/PageLoader'
+import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import { SmoothScrollProvider } from '@/components/layout/SmoothScroll'
 import { AboutSection } from '@/components/sections/AboutSection'
 import { AchievementsSection } from '@/components/sections/AchievementsSection'
-import { AISection } from '@/components/sections/AISection'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { ExperienceSection } from '@/components/sections/ExperienceSection'
 import { HeroSection } from '@/components/sections/HeroSection'
@@ -24,21 +23,21 @@ export function PortfolioExperience() {
   return (
     <SmoothScrollProvider>
       <AnimatePresence>{loading && <PageLoader onComplete={() => setLoading(false)} />}</AnimatePresence>
-      <GridBackground />
+      {!loading && <TopProgressBar />}
+      <GradientBackground />
       <Navbar />
       <main>
         <HeroSection />
-        <Marquee />
         <AboutSection />
         <SkillsSection />
-        <ProjectsSection />
-        <AISection />
         <ExperienceSection />
+        <ProjectsSection />
         <AchievementsSection />
         <TestimonialsSection />
         <ContactSection />
       </main>
       <Footer />
+      <ScrollToTop />
     </SmoothScrollProvider>
   )
 }

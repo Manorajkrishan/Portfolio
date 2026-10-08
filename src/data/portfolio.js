@@ -474,10 +474,10 @@ export const portfolio = {
         id: 20,
         title: 'Interactive Portfolio Website',
         description:
-          'This React + Vite portfolio with luminous editorial UI, dark mode, Framer Motion animations, FormSubmit contact delivery, project filtering, and a data-driven content architecture.',
+          'A modern Next.js portfolio with gradient UI, dark/light mode, Framer Motion animations, FormSubmit contact delivery, project filtering, and a fully data-driven content architecture.',
         image:
           'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop',
-        technologies: ['React', 'Vite', 'Framer Motion', 'CSS', 'FormSubmit', 'Data-driven UI'],
+        technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'FormSubmit'],
         category: 'fullstack',
         liveUrl: null,
         githubUrl: 'https://github.com/Manorajkrishan/Portfolio',

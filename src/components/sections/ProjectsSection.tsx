@@ -23,50 +23,46 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="section-shell mx-auto max-w-6xl">
       <Reveal>
-        <SectionHeader index="03" label="Work" title="Selected builds & product experiments" description={projects.subtitle} />
+        <SectionHeader title="My Projects" subtitle={projects.subtitle} />
       </Reveal>
 
-      <div className="mb-6 flex flex-wrap gap-2">
+      <div className="mb-8 flex flex-wrap justify-center gap-2">
         {projects.categories.slice(0, 6).map((category) => (
           <button
             key={category.key}
             onClick={() => setActiveCategory(category.key)}
-            className={cn(
-              'border-2 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.12em]',
-              activeCategory === category.key
-                ? 'border-border bg-accent text-accent-foreground shadow-[3px_3px_0_var(--shadow-color)]'
-                : 'border-border bg-card text-muted-foreground'
-            )}
+            className={cn('chip', activeCategory === category.key && 'chip-active')}
           >
             {category.label}
           </button>
         ))}
       </div>
 
-      <div className="project-rail -mx-4 px-4">
+      <div className="grid gap-6 md:grid-cols-2">
         {filtered.map((project, index) => (
           <Reveal key={project.id} delay={index * 0.04}>
-            <article className="studio-card flex h-full flex-col overflow-hidden">
-              <div className="relative h-44 border-b-2 border-border">
+            <article className="glass-card group overflow-hidden rounded-2xl transition hover:-translate-y-1">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover"
-                  sizes="420px"
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <span className="absolute top-3 left-3 border-2 border-border bg-background px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em]">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <span className="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-slate-900 capitalize">
                   {project.category}
                 </span>
               </div>
 
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="text-display text-lg font-bold leading-tight">{project.title}</h3>
-                <p className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+              <div className="p-6">
+                <h3 className="text-display text-xl font-bold">{project.title}</h3>
+                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
 
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <span key={tech} className="border border-border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide">
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 5).map((tech) => (
+                    <span key={tech} className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium">
                       {tech}
                     </span>
                   ))}
@@ -77,7 +73,7 @@ export function ProjectsSection() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="studio-btn flex-1 !px-3 !py-2 !text-xs"
+                    className="btn-outline flex-1 !py-2 !text-xs"
                   >
                     <Github size={14} /> Code
                   </a>
@@ -86,9 +82,9 @@ export function ProjectsSection() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="studio-btn studio-btn-ghost flex-1 !px-3 !py-2 !text-xs"
+                      className="btn-primary flex-1 !py-2 !text-xs"
                     >
-                      <ExternalLink size={14} /> Demo
+                      <ExternalLink size={14} /> Live Demo
                     </a>
                   )}
                 </div>
@@ -98,13 +94,8 @@ export function ProjectsSection() {
         ))}
       </div>
 
-      <Reveal className="mt-8">
-        <a
-          href={projects.allProjectsCta.url}
-          target="_blank"
-          rel="noreferrer"
-          className="studio-btn studio-btn-ghost"
-        >
+      <Reveal className="mt-10 text-center">
+        <a href={projects.allProjectsCta.url} target="_blank" rel="noreferrer" className="btn-outline">
           {projects.allProjectsCta.label}
         </a>
       </Reveal>
